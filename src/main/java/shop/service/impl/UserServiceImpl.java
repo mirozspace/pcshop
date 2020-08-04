@@ -13,7 +13,7 @@ import shop.models.entities.User;
 import shop.models.service.*;
 import shop.repository.AddressRepository;
 import shop.repository.ProductRepository;
-import shop.repository.RoleRepository;
+import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
 import shop.service.interfaces.URoleService;
 import shop.service.interfaces.UserService;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final URoleRepository URoleRepository;
     private final AddressRepository addressRepository;
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
@@ -37,13 +37,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository userRepository, AddressRepository addressRepository, ProductRepository productRepository,
                            ModelMapper modelMapper, URoleService uRoleService,
-                           RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Tools tools) {
+                           URoleRepository URoleRepository, BCryptPasswordEncoder bCryptPasswordEncoder, Tools tools) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
         this.uRoleService = uRoleService;
-        this.roleRepository = roleRepository;
+        this.URoleRepository = URoleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.tools = tools;
     }
@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService {
             throw new UsernameAlreadyExistException("User with username " + saved.getUsername() + " already exists!");
         if (this.userRepository.count() == 0) {
             this.uRoleService.seedRolesToDb();
-            user.setAuthorities(new HashSet<>(this.roleRepository.findAll()));
+            user.setAuthorities(new HashSet<>(this.URoleRepository.findAll()));
         } else {
-            user.setAuthorities(new HashSet<>(Set.of(this.roleRepository.findByAuthority("USER").orElse(null))));
+            user.setAuthorities(new HashSet<>(Set.of(this.URoleRepository.findByAuthority("USER").orElse(null))));
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         User savedUser;

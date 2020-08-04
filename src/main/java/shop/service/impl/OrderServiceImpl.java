@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void addOrder() throws UserIsNotExistException {
+    public void saveOrder() throws UserIsNotExistException {
         User user = this.userRepository.findByUsername(this.tools.getLoggedUser()).orElse(null);
         if (user != null && user.getBoughtProducts().size() > 0) {
             List<Product> products = user.getBoughtProducts();

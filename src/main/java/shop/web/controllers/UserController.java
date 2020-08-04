@@ -172,7 +172,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @GetMapping(GET_MAPPING_USER_CART_FINISH)
     public String finishCart() {
-        this.orderService.addOrder();
+        this.orderService.saveOrder();
         return REDIRECT_TO_HOME;
     }
 

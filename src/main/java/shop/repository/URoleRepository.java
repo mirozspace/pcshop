@@ -7,7 +7,7 @@ import shop.models.entities.URole;
 import java.util.Optional;
 
 @Repository
-public interface RoleRepository extends JpaRepository <URole, String> {
+public interface URoleRepository extends JpaRepository <URole, String> {
 
     Optional<URole> findByAuthority (String authority);
 

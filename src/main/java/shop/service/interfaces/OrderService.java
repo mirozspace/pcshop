@@ -11,7 +11,7 @@ public interface OrderService {
      * Adds new order to db
      * @throws UserIsNotExistException
      */
-    void addOrder() throws UserIsNotExistException;
+    void saveOrder() throws UserIsNotExistException;
 
     /**
      * delete order from db
