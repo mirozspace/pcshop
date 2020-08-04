@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <th:block th:include="~{/fragments/navbar}"></th:block>
+            </div>
+        </div>
+    </div>
+    <th:block th:object="${userToView}">
+        <div class="container m-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <th:block th:include="~{/fragments/profile_menu}"></th:block>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="h-pages">Your profile</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div
+                                class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title h-pages">Profile Information</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class=" col-md-12 col-lg-12 ">
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Username:</td>
+                                                            <td><span th:text="${userToView.getUsername()}"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>First Name:</td>
+                                                            <td><span th:text="${userToView.getFirstName()}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Name:</td>
+                                                            <td><span th:text="${userToView.getLastName()}"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email:</td>
+                                                            <td><span th:text="${userToView.getEmail()}"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Phone:</td>
+                                                            <td><span th:text="${userToView.getPhoneNumber()}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Country:</td>
+                                                            <td><span
+                                                                    th:text="${userToView.getAddress().getCountry()}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>City:</td>
+                                                            <td><span
+                                                                    th:text="${userToView.getAddress().getCity()}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Post Code:</td>
+                                                            <td><span
+                                                                    th:text="${userToView.getAddress().getPostCode()}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Street:</td>
+                                                            <td><span
+                                                                    th:text="${userToView.getAddress().getStreet()}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Street Number:</td>
+                                                            <td><span
+                                                                    th:text="${userToView.getAddress().getStreetNumb()}"></span>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</body>
+
+</html>

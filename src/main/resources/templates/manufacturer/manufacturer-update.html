@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <th:block th:include="~{/fragments/navbar}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <div class="container m-4">
+        <div class="row">
+            <div class="col-md-3">
+                <th:block th:include="~{/fragments/managment_menu}"></th:block>
+            </div>
+            <div class="col-md-9 form-update-user">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h-pages">Manufacturers update page</h4>
+                        <hr>
+                    </div>
+                </div>
+                <table class="table table-striped table-inverse table-responsive">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Category name</th>
+                            <th>Option</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <th:block th:each="manufacturer: ${allManufacturers}">
+                            <tr>
+                                <form th:method="post" th:action="@{/manufacturer/save/}">
+                                    <td scope="row">
+                                        <div class="form-group">
+                                            <input th:value="${manufacturer.getName()}" type="text" class="form-control"
+                                                name="name" id="" aria-describedby="helpId" placeholder="">
+                                            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control"
+                                                th:value="${manufacturer.getName()}" th:name="oldName">
+                                            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="bbs-1" type="submit">Save</button>
+                                    </td>
+                                </form>
+                                <td>
+                                    <a th:href="@{/manufacturer/delete/{manufacturerId}(manufacturerId = ${manufacturer.getId()})}"
+                                        class="bbs-1">Delete</a>
+                                </td>
+                            </tr>
+                        </th:block>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<th:block th:include="~{/fragments/footer}"></th:block>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:include="~{/fragments/navbar}"></th:block>
+        </div>
+    </div>
+</div>
+
+<div class="container m-4">
+    <div class="row">
+        <div class="col-md-3">
+<!--            <div class="vertical-menu">-->
+<!--                <a href="#" th:each="category: ${allCategories}" th:text="${category.getName()}"></a>-->
+<!--            </div>-->
+        </div>
+        <div class="col-md-9">
+	<div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h-pages">Common error page</h4>
+                        <hr>
+                    </div>
+                </div>
+			<!----><h4>Error: <span th:text="${msgError}"></span></h4>
+            <h4>Something went wrong!</h4>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+<th:block th:include="~{/fragments/footer}"></th:block>
+
+</html>

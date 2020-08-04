@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+<script>
+    // jQuery Event handlers
+    $('#test-button').click(() => {
+        fetch('http://localhost:8000/store')
+            .then((response) => response.json())
+            .then((json) => json.forEach((x, y) => {
+                $('.data-container .row:last-child').append(x);
+            }));
+    });
+</script>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:include="~{/fragments/navbar}"></th:block>
+        </div>
+    </div>
+</div>
+
+<div class="container m-4">
+    <div class="row">
+        <div class="col-md-3">
+            <!--            <div class="vertical-menu">-->
+            <!--                <a href="#" th:each="category: ${allCategories}" th:text="${category.getName()}"></a>-->
+            <!--            </div>-->
+        </div>
+        <div class="col-md-9">
+
+
+            <div class='button-holder mt-5'>
+                <button id='test-button' class='btn btn-info'>Test Button</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{/fragments/footer}"></th:block>
+</body>
+
+</html>

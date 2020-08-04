@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <th:block th:include="~{/fragments/navbar}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid m-4">
+        <div class="row">
+
+            <div class="col-md-2">
+
+                <th:block th:include="~{/fragments/categories-menu}"></th:block>
+
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h-pages">Welcome in our Computer Shop!</h4>
+                        <hr>
+                    </div>
+                </div>
+                <th:block th:each="product: ${allProducts}">
+                    <div class="product">
+                        <img th:src="${product.getImageUrls().get(0)}" class="card-img-top image-one-product"
+                            alt="Image of product" />
+                        <div class="title product-name"><span th:text="${product.name}"></span></div>
+                        <!-- <div class="product-description"><span th:text="${product.description}"></span></div> -->
+                        <div class="product-price"><span th:text="${product.price}"></span> &euro;</div>
+                        <a th:href="@{/user/add-to-cart/{productId}(productId = ${product.getId()}) }"
+                            class="myButton-buy">Buy Product</a>
+
+                        <th:block sec:authorize="hasAnyAuthority('ADMIN')">
+                            <a th:href="@{/product/delete/{productId}(productId = ${product.getId()})}"
+                                class="bbs-1">Delete</a>
+                        </th:block>
+                        <th:block sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
+                            <a th:href="@{/product/update/{productId}(productId = ${product.getId()})}"
+                                class="bbs-1">Edit</a>
+                        </th:block>
+
+                    </div>
+                </th:block>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<th:block th:include="~{/fragments/footer}"></th:block>
+
+</html>

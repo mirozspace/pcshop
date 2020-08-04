@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <th:block th:include="~{/fragments/navbar}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <div class="container m-4">
+        <div class="row">
+            <div class="col-md-3">
+                <th:block th:include="~{/fragments/managment_menu}"></th:block>
+                <!--            <div class="vertical-menu">-->
+                <!--                <a href="#" th:each="category: ${allCategories}" th:text="${category.getName()}"></a>-->
+                <!--            </div>-->
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h-pages">List with orders</h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row col-md-6 col-md-offset-2 custyle">
+                        <table class="table table-striped custab">
+                            <thead>
+                                <tr>
+                                    <th>SKU number</th>
+                                    <th>Product name</th>
+                                    <th>Receiver</th>
+                                    <th>Data</th>
+                                    <th>Detail</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <th:block th:each="o: ${allOrders}">
+                                <tr>
+                                    <td><span th:text="${o.getProductSku()}"></span></td>
+                                    <td><span th:text="${o.getProductName()}"></span></td>
+                                    <td><span th:text="${o.getFirstName() + ' ' + o.getLastName()}"></span></td>
+                                    <td><span th:text="${o.getBuyDate()}"></span></td>
+                                    <td class="text-center"><a href="#" class="bbs-1"><span style="text-decoration: line-through">Details</span></a></td>
+                                    <td class="text-center">
+                                        <a th:href="@{/order/delete/{orderId}(orderId = ${o.getId()})}" class="bbs-1">Delete</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<th:block th:include="~{/fragments/footer}"></th:block>
+
+</html>

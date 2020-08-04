@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <th:block th:include="~{/fragments/navbar}"></th:block>
+        </div>
+    </div>
+</div>
+
+<div class="container m-4">
+    <div class="row">
+        <div class="col-md-3">
+            <th:block th:include="~{/fragments/managment_menu}"></th:block>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="h-pages">Add new product to site</h4>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <form th:action="@{/product/update}" th:method="POST" th:object="${pvmupdate}"
+                          enctype="multipart/form-data">
+
+
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                    <span><img th:src="${pvmupdate.getImageUrls().get(0)}"
+                                               width="150" height="150"/></span>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <div class="form-group">
+                                    <label>Upload photo</label>
+                                    <input type="file" class="form-control-file" name="photos" placeholder=""
+                                           aria-describedby="fileHelpId">
+                                    <!-- <small id="fileHelpId" class="form-text text-muted">Help text</small> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input th:value="*{name}" type="text" class="form-control" name="name"
+                                           aria-describedby="helpId" placeholder="Product name">
+                                    <small id="helpId" class="form-text text-muted">
+                                        Product name can contains only text and digits. From 2 to 20 symbols.
+                                    </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('name')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Make</label>
+                                    <input th:value="*{make}" type="text" class="form-control" name="make"
+                                           aria-describedby="helpId"
+                                           placeholder="Product make">
+                                    <small id="helpId" class="form-text text-muted">
+                                        Product make can contains only text and digits. From 1 to 25 symbols.
+                                    </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('make')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Model</label>
+                                    <input th:value="*{model}" type="text" class="form-control" name="model"
+                                           aria-describedby="helpId"
+                                           placeholder="Product model">
+                                    <small id="helpId" class="form-text text-muted">
+                                        Product model can contains only text and digits. From 1 to 25 symbols.
+                                    </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('model')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>SKU</label>
+                                    <input th:value="*{sku}" type="text" class="form-control" name="sku"
+                                           aria-describedby="helpId"
+                                           placeholder="SKU number">
+                                    <small id="helpId" class="form-text text-muted">
+                                        SKU number can contains only text and digits. From 1 to 25 symbols.
+                                    </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('sku')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>EAN</label>
+                                    <input th:value="*{ean}" type="text" class="form-control" name="ean"
+                                           aria-describedby="helpId"
+                                           placeholder="EAN number">
+                                    <!-- <small id="helpId" class="form-text text-muted">Help text</small> --><small
+                                        id="helpId" class="form-text text-muted">
+                                    EAN number can contains only text and digits. From 1 to 25 symbols.
+                                </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('ean')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input th:value="*{price}" type="text" class="form-control" name="price"
+                                           aria-describedby="helpId"
+                                           placeholder="Price">
+                                    <small id="helpId" class="form-text text-muted">
+                                        Price can contains only digits. Value from 1 to 10000 symbols.
+                                    </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('price')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input th:value="*{quantity}" type="text" class="form-control" name="quantity"
+                                           aria-describedby="helpId"
+                                           placeholder="Quantity">
+                                    <small id="helpId" class="form-text text-muted">
+                                        Product can contains only digits. Value from 0 to 10 symbols.
+                                    </small>
+                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('quantity')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Select Category</label>
+                                    <select class="form-control" name="categoryF">
+                                        <option th:each="category : ${allCategoriesU}"
+                                                th:value="${category.getName()}"
+                                                th:text="${category.getName()}"
+                                                th:selected="${category.getName().equals(pbmupdate.getCategoryF())}">
+                                        </option>
+                                    </select>
+                                    <small id="helpId" class="form-text text-muted">
+                                        Category can contains only text and digits. From 2 to 15 symbols.
+                                    </small>
+                                    <!--                                    <small class="span-info-text-error" th:each="error : ${#fields.errors('categoryF')}" th:text="${error}"></small>-->
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Select Condition</label>
+                                    <select class="form-control" name="productCondition">
+                                        <option th:each="cond : ${T(shop.enums.ProductCondition).values()}"
+                                                th:value="${cond}"
+                                                th:text="${cond.getName()}">
+                                                th:selected="${cond.name().equals(pbmupdate.getProductCondition().name())}"
+                                        </option>
+                                    </select>
+                                    <small id="helpId" class="form-text text-muted">
+                                        Product condition can contains only NEW or USED.
+                                    </small>
+                                    <!--                                    <small class="span-info-text-error"
+                                                                               th:each="error : ${#fields.errors('productCondition')}"
+                                                                               th:text="${error}"></small>-->
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Select Manufacturer</label>
+
+                                    <select class="form-control" name="manufacturerF">
+                                        <option th:each="manufacturers : ${allManufacturersU}"
+                                                th:value="${manufacturers.getName()}"
+                                                th:text="${manufacturers.getName()}"
+                                                th:selected="${manufacturers.getName().equals(pbmupdate.getManufacturerF())}">
+                                        </option>
+
+                                    </select>
+                                    <small id="helpId" class="form-text text-muted">
+                                        Manufacturer can contains only text and digits. From 1 to 25 symbols.
+                                    </small>
+                                    <!--<small class="span-info-text-error"
+                                           th:each="error : ${#fields.errors('manufacturerF')}"
+                                           th:text="${error}"></small>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Product Description</label>
+                                    <textarea th:text="*{description}" class="form-control"
+                                              name="description" rows="3"></textarea>
+                                </div>
+                                <small class="span-info-text-error" th:each="error : ${#fields.errors('description')}"
+                                       th:text="${error}"></small>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <input hidden th:name="id" th:value="*{id}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="bbs-1">Update Product</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<th:block th:include="~{/fragments/footer}"></th:block>
+
+</html>
+
+
+<!--
+ <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td scope="row m-0">
+                                            <p>Photo</p>
+                                            <img width="150" height="150" th:src="*{getImageUrls().get(0)}" />
+                                        </td>
+                                        <td class="m-0">
+                                            <div class="form-group">
+                                                <input type="file" class="form-control-file" name="" id=""
+                                                    placeholder="" aria-describedby="fileHelpId">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p>Photo...</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row m-0"><span>Name</span></td>
+                                        <td class="m-0">
+                                            <div class="form-group">
+                                                <input th:value="*{name}" type="text" class="form-control" name="name"
+                                                    aria-describedby="helpId" placeholder="Product name">
+                                                <small class="span-info-text-error" th:each="error : ${#fields.errors('name')}" th:text="${error}"></small>
+                                            </div>
+                                        </td>
+                                        <td class="m-0">
+                                            <p id="helpd" class="form-text text-muted">
+                                                Product name can contains only text and digits. From 2 to 20
+                                                symbols.
+                                            </p>
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row m-0">
+                                        <span>Make</span>
+                                    </td>
+                                    <td class="m-0">
+                                        <div class="form-group">
+                                            <input th:value="make" type="text" class="form-control" name="make"  aria-describedby="helpId"
+                                                   placeholder="Product make">
+                                            <small class="span-info-text-error" th:each="error : ${#fields.errors('make')}" th:text="${error}"></small>
+                                        </div>
+                                    </td>
+                                    <td class="m-0">
+                                        <small id="helpId" class="form-text text-muted">
+                                            Product make can contains only text and digits. From 1 to 25 symbols.
+                                        </small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row m-0">
+                                        <span>Model</span>
+                                    </td>
+                                    <td class="m-0">
+                                        <div class="form-group">
+                                            <input th:value="*{model}" type="text" class="form-control" name="model"  aria-describedby="helpId"
+                                                   placeholder="Product model">
+                                            <small class="span-info-text-error" th:each="error : ${#fields.errors('model')}" th:text="${error}"></small>
+                                        </div>
+                                    </td>
+                                    <td class="m-0">
+                                        <p id="helpId" class="form-text text-muted">
+                                            Product model can contains only text and digits. From 1 to 25 symbols.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row m-0">
+                                        <span>SKU number</span>
+                                    </td>
+                                    <td class="m-0">
+                                        <div class="form-group">
+                                            <input th:value="*{sku}" type="text" class="form-control" name="sku"  aria-describedby="helpId"
+                                                   placeholder="SKU number">
+                                            <small class="span-info-text-error" th:each="error : ${#fields.errors('sku')}" th:text="${error}"></small>
+                                        </div>
+                                    </td>
+                                    <td class="m-0">
+                                        <p id="helpId" class="form-text text-muted">
+                                            SKU number can contains only text and digits. From 1 to 25 symbols.
+                                        </p>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td scope="row m-0">
+                                            <span>EAN number</span>
+                                        </td>
+                                        <td class="m-0">
+                                            <div class="form-group">
+                                                <input th:value="*{ean}" type="text" class="form-control" name="ean"  aria-describedby="helpId"
+                                                       placeholder="EAN number">
+                                                <small id="helpId" class="form-text text-muted">Help text</small>
+<small class="span-info-text-error" th:each="error : ${#fields.errors('ean')}" th:text="${error}"></small>
+</div>
+</td>
+<td class="m-0">
+    <p id="helpId" class="form-text text-muted">
+        EAN number can contains only text and digits. From 1 to 25 symbols.
+    </p>
+</td>
+</tr>
+<tr>
+    <td scope="row m-0">
+        <span>Price</span>
+    </td>
+    <td class="m-0">
+        <div class="form-group">
+            <input th:value="*{price}" type="text" class="form-control" name="price"  aria-describedby="helpId"
+                   placeholder="Price">
+            <small class="span-info-text-error" th:each="error : ${#fields.errors('price')}" th:text="${error}"></small>
+        </div>
+    </td>
+    <td class="m-0">
+        <p id="helpId" class="form-text text-muted">
+            Price can contains only digits. Value from 1 to 10000 symbols.
+        </p>
+    </td>
+</tr>
+<tr>
+    <td scope="row m-0">
+        <span>Quantity</span>
+    </td>
+    <td class="m-0">
+        <div class="form-group">
+            <input th:value="*{quantity}" type="text" class="form-control" name="quantity"  aria-describedby="helpId"
+                   placeholder="Quantity">
+            <small class="span-info-text-error" th:each="error : ${#fields.errors('quantity')}" th:text="${error}"></small>
+        </div>
+    </td>
+    <td class="m-0">
+        <p id="helpId" class="form-text text-muted">
+            Product can contains only digits. Value from 0 to 10 symbols.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td scope="row m-0">
+        <span>Select Category</span>
+    </td>
+    <td class="m-0">
+        <div class="form-group">
+            <select class="form-control" name="categoryF" >
+                <option>Select category</option>
+                <option th:each="category : ${allCategories}"
+                        th:value="${category.getName()}" th:text="${category.getName()}">
+                </option>
+            </select>
+            <small class="span-info-text-error" th:each="error : ${#fields.errors('categoryF')}" th:text="${error}"></small>
+        </div>
+    </td>
+    <td class="m-0">
+        <p id="helpId" class="form-text text-muted">
+            Category can contains only text and digits. From 2 to 15 symbols.
+        </p>
+    </td>
+</tr>
+
+
+
+<tr>
+    <td scope="row m-0">
+        <span>Select Condition</span>
+    </td>
+    <td class="m-0">
+        <div class="form-group">
+            <select class="form-control" name="productCondition" >
+                <option>Select condition</option>
+                <option th:each="cond : ${T(shop.enums.ProductCondition).values()}"
+                        th:value="${cond}" th:text="${cond.getName()}">
+                </option>
+            </select>
+            <small id="helpId" class="form-text text-muted">
+                Product condition can contains only NEW or USED.
+            </small>
+            <small class="span-info-text-error" th:each="error : ${#fields.errors('productCondition')}" th:text="${error}"></small>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td scope="row m-0">
+        Select Manufacturer
+    </td>
+    <td class="m-0">
+        <div class="form-group">
+            <select class="form-control" name="manufacturerF" >
+                <option>Select Manufacturer</option>
+                <option th:each="manufacturers : ${allManufacturers}"
+                        th:value="${manufacturers.getName()}" th:text="${manufacturers.getName()}">
+                </option>
+            </select>
+            <small id="helpId" class="form-text text-muted">
+                Manufacturer can contains only text and digits. From 1 to 25 symbols.
+            </small>
+            <small class="span-info-text-error" th:each="error : ${#fields.errors('manufacturerF')}"
+                   th:text="${error}"></small>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td scope="row m-0">
+        <span>description</span>
+    </td>
+    <td class="m-0">
+        <div class="form-group">
+            <textarea placeholder="Description of product ..." class="form-control" name="description"  rows="3"></textarea>
+        </div>
+        <small class="span-info-text-error" th:each="error : ${#fields.errors('description')}" th:text="${error}"></small>
+    </td>
+</tr>
+</tbody>
+</table>
+-->
