@@ -1,4 +1,4 @@
-package shop.service.impl;
+package shop.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ import shop.repository.AddressRepository;
 import shop.repository.ProductRepository;
 import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
-import shop.service.interfaces.URoleService;
-import shop.service.interfaces.UserService;
 import shop.tools.Tools;
 
 import java.util.*;

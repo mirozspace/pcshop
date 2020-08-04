@@ -15,7 +15,7 @@ import shop.models.service.ProductServiceModel;
 import shop.models.views.CategoryViewModel;
 import shop.models.views.ManufacturerViewModel;
 import shop.models.views.ProductViewModel;
-import shop.service.interfaces.ProductService;
+import shop.service.ProductService;
 import shop.annotation.PageTitle;
 import shop.tools.ListShop;
 

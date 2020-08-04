@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import shop.annotation.PageTitle;
 import shop.models.views.OrderViewModel;
-import shop.service.interfaces.OrderService;
+import shop.service.OrderService;
 import shop.tools.ListShop;
 
-import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Controller

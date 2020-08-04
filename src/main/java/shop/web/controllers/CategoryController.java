@@ -17,7 +17,7 @@ import shop.models.bindings.CategorySaveBindingModel;
 import shop.models.service.CategoryServiceModel;
 import shop.models.views.CategoryViewModel;
 import shop.models.views.ProductViewModel;
-import shop.service.interfaces.CategoryService;
+import shop.service.CategoryService;
 import shop.annotation.PageTitle;
 import shop.tools.ListShop;
 

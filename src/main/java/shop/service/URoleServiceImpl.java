@@ -1,4 +1,4 @@
-package shop.service.impl;
+package shop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,6 @@ import shop.models.entities.User;
 import shop.models.service.SaveNewRolesServiceModel;
 import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
-import shop.service.interfaces.URoleService;
 
 @Service
 public class URoleServiceImpl implements URoleService {

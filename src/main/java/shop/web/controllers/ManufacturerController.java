@@ -17,7 +17,7 @@ import shop.models.bindings.ManufacturerUpdateBindingModel;
 import shop.models.bindings.ManufacturerSaveBindingModel;
 import shop.models.service.ManufacturerServiceModel;
 import shop.models.views.ManufacturerViewModel;
-import shop.service.interfaces.ManufacturerService;
+import shop.service.ManufacturerService;
 import shop.annotation.PageTitle;
 import shop.tools.ListShop;
 

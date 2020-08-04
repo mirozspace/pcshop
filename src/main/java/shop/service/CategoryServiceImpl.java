@@ -1,4 +1,4 @@
-package shop.service.impl;
+package shop.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import shop.error.CategoryIsNotExistExceprion;
 import shop.models.entities.Category;
 import shop.models.service.CategoryServiceModel;
 import shop.repository.CategoryRepository;
-import shop.service.interfaces.CategoryService;
 import shop.util.DefaultCategoryInformation;
 
 import javax.annotation.PostConstruct;

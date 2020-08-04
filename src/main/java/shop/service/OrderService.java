@@ -1,4 +1,4 @@
-package shop.service.interfaces;
+package shop.service;
 
 import shop.error.UserIsNotExistException;
 import shop.models.service.OrderServiceModel;

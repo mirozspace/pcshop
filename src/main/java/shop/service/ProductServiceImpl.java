@@ -1,4 +1,4 @@
-package shop.service.impl;
+package shop.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import shop.repository.ManufacturerRepository;
 import shop.repository.ProductRepository;
 import shop.repository.CategoryRepository;
 import shop.repository.UserRepository;
-import shop.service.interfaces.CloudinaryService;
-import shop.service.interfaces.ProductService;
 import shop.util.DefaultProductInformation;
 
 import java.io.File;
