@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import shop.error.category.CategoryIsNotExistExceprion;
+import shop.error.manufacturer.ManufacturerIsNotExistException;
 import shop.error.product.ProductIsNotExistException;
 import shop.models.entities.Category;
 import shop.models.entities.Manufacturer;
@@ -27,8 +29,6 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    /*@Value("${serverPath}")
-    private String userBucketPath;*/
     private final ProductRepository productRepository;
     private final ManufacturerRepository manufacturerRepository;
     private final CategoryRepository categoryRepository;
@@ -118,18 +118,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductServiceModel> getAllProductRest() {
-
-        return null;
-    }
-
-    @Override
     public List<ProductServiceModel> getAllProductByCategory(String category) {
         return null;
     }
 
     @Override
-    public void deleteProductFromCartById(String productId) {
+    public boolean deleteProductFromDbById(String productId) {
         List<User> users = this.userRepository.findAll();
         for (User user : users) {
             List<Product> buyedProducts = user.getBoughtProducts().stream()
@@ -142,23 +136,32 @@ public class ProductServiceImpl implements ProductService {
         product.setCategory(null);
         this.productRepository.saveAndFlush(product);
         this.productRepository.deleteById(productId);
+        return true;
     }
 
     @Override
     public ProductServiceModel findByProductId(String productId) {
         Product product = this.productRepository.findById(productId).orElse(null);
-        return product != null ? this.modelMapper.map(product, ProductServiceModel.class)
-                : null;
+        if(product == null){
+            throw new ProductIsNotExistException("Product is not exist!");
+        }
+        return this.modelMapper.map(product, ProductServiceModel.class);
     }
 
     @Override
-    public void addDefaultProducts() {
+    public boolean addDefaultProducts() {
         if (this.productRepository.count() == 0) {
             Category category = null;
             Manufacturer manufacturer = null;
             for (DefaultProductInformation value : DefaultProductInformation.values()) {
                 category = this.categoryRepository.findByName(value.getCategory());
+                if(category == null){
+                    throw new CategoryIsNotExistExceprion("Category is not exist!");
+                }
                 manufacturer = this.manufacturerRepository.findByName(value.getManufacturer());
+                if (manufacturer == null){
+                    throw new ManufacturerIsNotExistException("Manufacturer is not exist!");
+                }
                 Product pr = new Product(
                         value.getName(),
                         value.getDescription(),
@@ -176,15 +179,14 @@ public class ProductServiceImpl implements ProductService {
                 this.productRepository.saveAndFlush(pr);
             }
         }
-
-
+        return true;
     }
 
     @Override
-    public void deleteAllProducts() {
+    public boolean deleteAllProducts() {
         this.productRepository.deleteAll();
+        return true;
     }
-
 
     /* PRIVATE METHODS */
     public static String getPathForLocalInFileSystem() {
@@ -197,14 +199,11 @@ public class ProductServiceImpl implements ProductService {
                 + File.separator + "products";
     }
 
-    @SuppressWarnings("unused")
     private static String getMadeLink() {
-
         return "/src/main/resources/static/img/products//";
     }
 
     /* PRIVATE METHODS */
-    @SuppressWarnings("unused")
     private static String getBaseFilePathString3() {
         return "C:" + File.separator + "photos";
     }

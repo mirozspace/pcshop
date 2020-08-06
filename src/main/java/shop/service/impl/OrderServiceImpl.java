@@ -3,6 +3,7 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shop.error.order.OrderIsNotExistException;
 import shop.error.user.UserIsNotExistException;
 import shop.models.entities.Order;
 import shop.models.entities.Product;
@@ -23,7 +24,6 @@ public class OrderServiceImpl implements OrderService {
     private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
     private final Tools tools;
-    @SuppressWarnings({"unused", "FieldCanBeLocal"})
 	private final UserService userService;
     private final UserRepository userRepository;
 
@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrder() throws UserIsNotExistException {
+    public boolean saveOrders() throws UserIsNotExistException {
         User user = this.userRepository.findByUsername(this.tools.getLoggedUser()).orElse(null);
         if (user != null && user.getBoughtProducts().size() > 0) {
             List<Product> products = user.getBoughtProducts();
@@ -65,11 +65,17 @@ public class OrderServiceImpl implements OrderService {
         } else {
             throw new UserIsNotExistException("User is not exist!");
         }
+        return true;
     }
 
     @Override
-    public void deleteOrder(String orderId) {
+    public boolean deleteOrder(String orderId) {
+        Order order = this.orderRepository.findById(orderId).orElse(null);
+        if (order == null){
+            throw new OrderIsNotExistException("Order is not exist!");
+        }
         this.orderRepository.deleteById(orderId);
+        return true;
     }
 
     @Override

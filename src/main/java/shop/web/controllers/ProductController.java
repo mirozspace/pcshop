@@ -133,7 +133,7 @@ public class ProductController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @RequestMapping(path = REQUEST_MAPPING_PRODUCT_DELETE)
     public String deleteProductFromCartById(@PathVariable("productId") String productId) {
-        this.productService.deleteProductFromCartById(productId);
+        this.productService.deleteProductFromDbById(productId);
         return REDIRECT_TO_HOME;
     }
 
