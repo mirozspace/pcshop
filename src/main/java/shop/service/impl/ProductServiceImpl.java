@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import shop.error.ProductIsNotExistException;
+import shop.error.product.ProductIsNotExistException;
 import shop.models.entities.Category;
 import shop.models.entities.Manufacturer;
 import shop.models.entities.Product;

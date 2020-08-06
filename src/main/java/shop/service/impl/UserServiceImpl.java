@@ -6,7 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import shop.error.*;
+import shop.error.address.AddressIsNotExistException;
+import shop.error.product.ProductIsNotExistException;
+import shop.error.user.*;
 import shop.models.entities.Address;
 import shop.models.entities.Product;
 import shop.models.entities.User;
@@ -55,7 +57,7 @@ public class UserServiceImpl implements UserService {
         User saved = this.userRepository.findByUsername(usm.getUsername()).orElse(null);
         addAddressToUser(usm, user);
         if (saved != null)
-            throw new UsernameAlreadyExistException("User with username " + saved.getUsername() + " already exists!");
+            throw new UserWithUsernameAlreadyExistException("User with username " + saved.getUsername() + " already exists!");
         if (this.userRepository.count() == 0) {
             this.uRoleService.seedRolesToDb();
             user.setAuthorities(new HashSet<>(this.URoleRepository.findAll()));
@@ -99,7 +101,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel updateProfile(UserServiceModel usm) {
     	if(!usm.getPassword().equals(usm.getConfirmPassword())) {
-    		throw new PasswordsNotMatchExeption("Password not match!");
+    		throw new UserPasswordsNotMatchException("Password not match!");
     	}
         UserServiceModel returnUser = null;
         User u = this.userRepository.findByUsername(this.tools.getLoggedUser()).orElse(null);
@@ -119,10 +121,10 @@ public class UserServiceImpl implements UserService {
                 this.addressRepository.saveAndFlush(userAddress);
                 returnUser = this.modelMapper.map(userAddress, UserServiceModel.class);
             } else {
-                throw new AddressIsNotExist("Address is not Exist (internal error)!");
+                throw new AddressIsNotExistException("Address is not Exist (internal error)!");
             }
         } else {
-            throw new UsernameAlreadyExistException("User is not Exist (internal error)!");
+            throw new UserWithUsernameAlreadyExistException("User is not Exist (internal error)!");
         }
         return returnUser;
     }

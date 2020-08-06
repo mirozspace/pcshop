@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.error.*;
+import shop.error.product.ProductIsNotExistException;
 import shop.models.bindings.ProductBindingModel;
 import shop.models.service.ProductServiceModel;
 import shop.models.views.CategoryViewModel;

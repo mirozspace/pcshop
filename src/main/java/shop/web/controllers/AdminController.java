@@ -23,7 +23,7 @@ import shop.service.URoleService;
 import shop.service.UserService;
 import shop.annotation.PageTitle;
 import shop.error.CustomBaseException;
-import shop.error.UserIsNotExistException;
+import shop.error.user.UserIsNotExistException;
 import shop.tools.ListShop;
 
 import java.util.List;

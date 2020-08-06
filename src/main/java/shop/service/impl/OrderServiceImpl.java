@@ -3,7 +3,7 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop.error.UserIsNotExistException;
+import shop.error.user.UserIsNotExistException;
 import shop.models.entities.Order;
 import shop.models.entities.Product;
 import shop.models.entities.User;

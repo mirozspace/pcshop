@@ -1,11 +1,11 @@
-package shop.error;
+package shop.error.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import shop.error.CustomBaseException;
 
-@SuppressWarnings("serial")
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "User login is not correct!!")
-public class UserLogIsNotCorrect extends CustomBaseException{
+public class UserLogIsNotCorrect extends CustomBaseException {
     public UserLogIsNotCorrect(String message) {
         super(message);
     }

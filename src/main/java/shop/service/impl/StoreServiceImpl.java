@@ -3,7 +3,7 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop.error.StoreExistException;
+import shop.error.store.StoreAlreadyExistException;
 import shop.models.entities.Store;
 import shop.models.service.StoreServiceModel;
 import shop.repository.StoreRepository;
@@ -28,7 +28,7 @@ public class StoreServiceImpl implements StoreService {
     public StoreServiceModel addStore(StoreServiceModel ssm) {
         Store storeFromDb = this.storeRepository.findByName(ssm.getName()).orElse(null);
         if (storeFromDb != null){
-            throw new StoreExistException(ssm.getName());
+            throw new StoreAlreadyExistException(ssm.getName());
         }
         Store storeToDb = this.modelMapper.map(ssm, Store.class);
         return this.modelMapper.map(storeToDb, StoreServiceModel.class);

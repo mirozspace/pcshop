@@ -1,6 +1,6 @@
 package shop.service;
 
-import shop.error.UserIsNotExistException;
+import shop.error.user.UserIsNotExistException;
 import shop.models.service.OrderServiceModel;
 
 import java.util.List;

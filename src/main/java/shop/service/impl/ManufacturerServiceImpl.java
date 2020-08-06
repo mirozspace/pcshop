@@ -3,8 +3,8 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop.error.ManufacturerIsNotExistException;
-import shop.error.UpdateManufacturerException;
+import shop.error.manufacturer.ManufacturerIsNotExistException;
+import shop.error.manufacturer.ManufacturerUpdateException;
 import shop.models.entities.Manufacturer;
 import shop.models.service.ManufacturerServiceModel;
 import shop.repository.ManufacturerRepository;
@@ -55,14 +55,14 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public ManufacturerServiceModel updateManufacturer(ManufacturerServiceModel msm) throws UpdateManufacturerException {
+    public ManufacturerServiceModel updateManufacturer(ManufacturerServiceModel msm) throws ManufacturerUpdateException {
         ManufacturerServiceModel returnedManufacturer = null;
         Manufacturer manufacturer = this.manufacturerRepository.findByName(msm.getName());
         if (manufacturer != null) {
             manufacturer.setName(msm.getName());
             this.manufacturerRepository.saveAndFlush(manufacturer);
         } else {
-            throw new UpdateManufacturerException("Manufacturer " + msm.getName() + " cannot be save!");
+            throw new ManufacturerUpdateException("Manufacturer " + msm.getName() + " cannot be save!");
         }
         return returnedManufacturer;
     }

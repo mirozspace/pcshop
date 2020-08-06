@@ -1,13 +1,13 @@
-package shop.error;
+package shop.error.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import shop.error.CustomBaseException;
 
-@SuppressWarnings("serial")
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Passwords not matches!")
-public class PasswordsNotMatchExeption extends CustomBaseException {
+public class UserPasswordsNotMatchException extends CustomBaseException {
 
-	public PasswordsNotMatchExeption(String message) {
+	public UserPasswordsNotMatchException(String message) {
 		super(message);
 	}
 

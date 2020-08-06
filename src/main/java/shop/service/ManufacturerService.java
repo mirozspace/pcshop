@@ -1,6 +1,6 @@
 package shop.service;
 
-import shop.error.UpdateManufacturerException;
+import shop.error.manufacturer.ManufacturerUpdateException;
 import shop.models.service.ManufacturerServiceModel;
 
 import java.util.List;
@@ -30,9 +30,9 @@ public interface ManufacturerService {
      * Loads the manufacturer update page
      * @param msm
      * @return ManufacturerServiceModel
-     * @throws UpdateManufacturerException
+     * @throws ManufacturerUpdateException
      */
-    ManufacturerServiceModel updateManufacturer(ManufacturerServiceModel msm) throws UpdateManufacturerException;
+    ManufacturerServiceModel updateManufacturer(ManufacturerServiceModel msm) throws ManufacturerUpdateException;
 
     /**
      * Deletes all manufacturers in store

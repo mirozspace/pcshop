@@ -2,14 +2,13 @@ package shop.service.services;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import shop.error.UserIsNotExistException;
-import shop.error.UserWithThisIdNotFoundException;
+import shop.error.user.UserIsNotExistException;
+import shop.error.user.UserWithThisIdNotFoundException;
 import shop.models.entities.URole;
 import shop.models.entities.User;
 import shop.models.service.URoleServiceModel;

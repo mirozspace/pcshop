@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.error.*;
+import shop.error.address.AddressIsNotExistException;
+import shop.error.user.*;
 import shop.models.bindings.UserProfileUpdateBindingModel;
 import shop.models.bindings.UserRegisterBindingModel;
 import shop.models.service.UserServiceModel;
@@ -176,11 +178,11 @@ public class UserController {
         return REDIRECT_TO_HOME;
     }
 
-    @ExceptionHandler({AddressIsNotExist.class, UsernameAlreadyExistException.class,
+    @ExceptionHandler({AddressIsNotExistException.class, UserWithUsernameAlreadyExistException.class,
             UsernameNotFoundException.class, UserRegistrationException.class,
-            UsernameAlreadyExistException.class, AddressIsNotExist.class,
+            UserWithUsernameAlreadyExistException.class, AddressIsNotExistException.class,
             UserCannotSaveException.class, UserWithThisIdNotFoundException.class,
-            PasswordsNotMatchExeption.class})
+            UserPasswordsNotMatchException.class})
     public ModelAndView handleUserException(CustomBaseException e) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("msgError", e.getMessage());

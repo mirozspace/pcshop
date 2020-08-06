@@ -1,13 +1,13 @@
-package shop.error;
+package shop.error.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import shop.error.CustomBaseException;
 
-@SuppressWarnings("serial")
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Username already exist")
-public class UsernameAlreadyExistException extends CustomBaseException{
+public class UserWithUsernameAlreadyExistException extends CustomBaseException {
 
-    public UsernameAlreadyExistException(String msg) {
+    public UserWithUsernameAlreadyExistException(String msg) {
         super(msg);
     }
 }

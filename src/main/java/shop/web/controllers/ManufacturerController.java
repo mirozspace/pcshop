@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.error.CustomBaseException;
-import shop.error.ManufacturerIsNotExistException;
-import shop.error.UpdateManufacturerException;
+import shop.error.manufacturer.ManufacturerIsNotExistException;
+import shop.error.manufacturer.ManufacturerUpdateException;
 import shop.models.bindings.ManufacturerAddBindingModel;
 import shop.models.bindings.ManufacturerUpdateBindingModel;
 import shop.models.bindings.ManufacturerSaveBindingModel;
@@ -82,7 +82,7 @@ public class ManufacturerController {
     public String updateManufacturerPost(@Valid @ModelAttribute("mubm") ManufacturerUpdateBindingModel mubm,
                                          BindingResult bindingResult,
                                          RedirectAttributes redirectAttributes,
-                                         Model model) throws UpdateManufacturerException {
+                                         Model model) throws ManufacturerUpdateException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.mubm", mubm);
             redirectAttributes.addFlashAttribute("mubm", mubm);
@@ -121,7 +121,7 @@ public class ManufacturerController {
         return REDIRECT_TO_MANUFACTURER_UPDATE;
     }
 
-    @ExceptionHandler({ManufacturerIsNotExistException.class, UpdateManufacturerException.class,
+    @ExceptionHandler({ManufacturerIsNotExistException.class, ManufacturerUpdateException.class,
             ManufacturerIsNotExistException.class})
     public ModelAndView handleManufacturerException(CustomBaseException e) {
         ModelAndView modelAndView = new ModelAndView();

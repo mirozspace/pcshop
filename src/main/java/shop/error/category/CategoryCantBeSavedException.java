@@ -1,12 +1,12 @@
-package shop.error;
+package shop.error.category;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import shop.error.CustomBaseException;
 
-@SuppressWarnings("serial")
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Category cannot be saved!")
-public class CategoryCantBeSaved extends CustomBaseException{
-    public CategoryCantBeSaved(String message) {
+public class CategoryCantBeSavedException extends CustomBaseException {
+    public CategoryCantBeSavedException(String message) {
         super(message);
     }
 }

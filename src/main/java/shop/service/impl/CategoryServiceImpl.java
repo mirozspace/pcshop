@@ -3,9 +3,9 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop.error.CategoryAlreadyExistException;
-import shop.error.CategoryCantBeSaved;
-import shop.error.CategoryIsNotExistExceprion;
+import shop.error.category.CategoryAlreadyExistException;
+import shop.error.category.CategoryCantBeSavedException;
+import shop.error.category.CategoryIsNotExistExceprion;
 import shop.models.entities.Category;
 import shop.models.service.CategoryServiceModel;
 import shop.repository.CategoryRepository;
@@ -30,12 +30,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @PostConstruct
     @Override
-    public void initDefaultCategory() {
+    public long initDefaultCategory() {
         if (this.categoryRepository.count() == 0) {
             for (DefaultCategoryInformation value : DefaultCategoryInformation.values()) {
                 this.categoryRepository.saveAndFlush(new Category(value.getName(), value.getDescription()));
             }
         }
+        return this.categoryRepository.count();
     }
 
     @Override
@@ -64,19 +65,24 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(String categoryId) {
+    public boolean deleteCategory(String categoryId) {
+        Category category = this.categoryRepository.findById(categoryId).orElse(null);
+        if (category == null){
+            throw new CategoryIsNotExistExceprion("Category is not exist!");
+        }
         this.categoryRepository.deleteById(categoryId);
+        return true;
     }
 
     @Override
-    public void saveCategory(CategoryServiceModel csm) {
+    public CategoryServiceModel saveCategory(CategoryServiceModel csm) {
         Category c = this.categoryRepository.findByName(csm.getOldName());
         if (c == null) {
-            throw new CategoryCantBeSaved("Category" + csm.getName() + "cannot be saved!");
+            throw new CategoryCantBeSavedException("Category" + csm.getName() + "cannot be saved!");
         }
         c.setName(csm.getName());
         c.setDescription(csm.getDescription());
-        this.categoryRepository.saveAndFlush(c);
+        return this.modelMapper.map(this.categoryRepository.saveAndFlush(c), CategoryServiceModel.class);
     }
 
 	@Override
@@ -87,21 +93,4 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		return this.modelMapper.map(category, CategoryServiceModel.class);
 	}
-    
-
-
-
-   /* @Override
-    public CategoryServiceModel updateCategory(CategoryServiceModel csm) {
-        CategoryServiceModel returnedCategory = null;
-        Category category = this.categoryRepository.findById(csm.getName()).orElse(null);
-        if (category != null) {
-            category.setName(csm.getName());
-            category.setDescription(csm.getDescription());
-            this.categoryRepository.saveAndFlush(category);
-        } else {
-            //niakakva greshka
-        }
-        return returnedCategory;
-    }*/
 }

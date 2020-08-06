@@ -1,12 +1,12 @@
-package shop.error;
+package shop.error.manufacturer;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import shop.error.CustomBaseException;
 
-@SuppressWarnings("serial")
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Manufacturer cannot be update!")
-public class UpdateManufacturerException extends CustomBaseException {
-    public UpdateManufacturerException(String msg) {
+public class ManufacturerUpdateException extends CustomBaseException {
+    public ManufacturerUpdateException(String msg) {
         super(msg);
     }
 }

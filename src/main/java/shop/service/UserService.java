@@ -1,8 +1,7 @@
 package shop.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import shop.error.UserCannotSaveException;
-import shop.models.service.ProductServiceModel;
+import shop.error.user.UserCannotSaveException;
 import shop.models.service.URoleServiceModel;
 import shop.models.service.UserServiceModel;
 import java.util.List;
