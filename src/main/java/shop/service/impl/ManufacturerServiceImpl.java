@@ -28,12 +28,13 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @PostConstruct
     @Override
-    public void initDefaultManufacturer() {
+    public long initDefaultManufacturer() {
         if (this.manufacturerRepository.count() == 0) {
             for (DefaultManufacturerInformation value : DefaultManufacturerInformation.values()) {
                 this.manufacturerRepository.saveAndFlush(new Manufacturer(value.getName()));
             }
         }
+        return this.manufacturerRepository.count();
     }
 
     @Override
@@ -68,18 +69,23 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public void deleteManufacturer(String manufacturerId) {
+    public boolean deleteManufacturer(String manufacturerId) {
+        Manufacturer manufacturer = this.manufacturerRepository.findById(manufacturerId).orElse(null);
+        if (manufacturer == null){
+            throw new ManufacturerIsNotExistException("Manufacturer is not exist!");
+        }
         this.manufacturerRepository.deleteById(manufacturerId);
+        return true;
     }
 
     @Override
-    public void saveManufacturer(ManufacturerServiceModel msm) {
+    public ManufacturerServiceModel saveManufacturer(ManufacturerServiceModel msm) {
         Manufacturer m = this.manufacturerRepository.findByName(msm.getOldName());
         if (m == null) {
             throw new ManufacturerIsNotExistException("Manufacturer " + msm.getName() + " is not exist!");
         }
         m.setName(msm.getName());
-        this.manufacturerRepository.saveAndFlush(m);
+        return this.modelMapper.map(this.manufacturerRepository.saveAndFlush(m), ManufacturerServiceModel.class);
     }
 
 
