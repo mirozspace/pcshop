@@ -28,17 +28,18 @@ public class URoleServiceImpl implements URoleService {
 	}
 
 	@Override
-	public void seedRolesToDb() {
+	public long seedRolesToDb() {
 		if (this.URoleRepository.count() == 0) {
 			this.URoleRepository.saveAndFlush(new URole("ADMIN"));
 			this.URoleRepository.saveAndFlush(new URole("MANAGER"));
 			this.URoleRepository.saveAndFlush(new URole("WORKER"));
 			this.URoleRepository.saveAndFlush(new URole("USER"));
 		}
+		return this.URoleRepository.count();
 	}
 
 	@Override
-	public void editUserRoles(SaveNewRolesServiceModel snrsm) {
+	public boolean editUserRoles(SaveNewRolesServiceModel snrsm) {
 		User user = this.userRepository.findById(snrsm.getId()).orElse(null);
 		if (user == null) {
 			throw new UserIsNotExistException("User is not Exist!");
@@ -61,6 +62,7 @@ public class URoleServiceImpl implements URoleService {
 			user.getAuthorities().add(roleWorker);
 		}
 		this.userRepository.saveAndFlush(user);
+		return true;
 	}
 
     @Override

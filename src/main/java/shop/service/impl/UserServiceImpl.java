@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel findUserByUsername(String loggedUserStr) {
         User u = this.userRepository.findByUsername(loggedUserStr).orElse(null);
-        if(u == null){
+        if (u == null) {
             throw new UserIsNotExistException("User is not exist!");
         }
         return this.modelMapper.map(u, UserServiceModel.class);
@@ -100,13 +100,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserServiceModel updateProfile(UserServiceModel usm) {
-    	if(!usm.getPassword().equals(usm.getConfirmPassword())) {
-    		throw new UserPasswordsNotMatchException("Password not match!");
-    	}
+        if (!usm.getPassword().equals(usm.getConfirmPassword())) {
+            throw new UserPasswordsNotMatchException("Password not match!");
+        }
         UserServiceModel returnUser = null;
         User u = this.userRepository.findByUsername(this.tools.getLoggedUser()).orElse(null);
         if (u != null) {
-        	u.setPassword(this.bCryptPasswordEncoder.encode(usm.getPassword()));
+            u.setPassword(this.bCryptPasswordEncoder.encode(usm.getPassword()));
             u.setFirstName(usm.getFirstName());
             u.setLastName(usm.getLastName());
             u.setPhoneNumber(usm.getPhoneNumber());
@@ -138,42 +138,35 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-    /*@Override
-    public void removeProductCart(String productId, String loggedUserStr) {
-        Product productForBye = this.productRepository.findById(productId).orElse(null);
-        User loggedUser = this.userRepository.findByUsername(loggedUserStr).orElse(null);
-        if (this.isInputDataCorrect(loggedUser, productForBye)) {
-            loggedUser.getBuyedProducts().remove(productForBye);
-            this.userRepository.saveAndFlush(loggedUser);
-        }
-    }*/
-
     @Override
-    public void removeAllProductCart(String loggedUserStr) {
+    public boolean removeAllProductCart(String loggedUserStr) {
         User loggedUser = this.userRepository.findByUsername(loggedUserStr).orElse(null);
-        if (loggedUser != null) {
-            loggedUser.getBoughtProducts().clear();
-            this.userRepository.saveAndFlush(loggedUser);
+        if (loggedUser == null) {
+            throw new UserIsNotExistException("User is not exist!");
         }
+        loggedUser.getBoughtProducts().clear();
+        this.userRepository.saveAndFlush(loggedUser);
+        return true;
     }
 
     @Override
-    public void removeOneProductCart(String productId, String loggedUser) {
+    public boolean removeOneProductCart(String productId, String loggedUser) {
         User userFromDb = this.userRepository.findByUsername(loggedUser).orElse(null);
-        if (userFromDb == null){
+        if (userFromDb == null) {
             throw new UserIsNotExistException("Pser with name " + loggedUser + " is not exist!");
         }
         Product product = this.productRepository.findById(productId).orElse(null);
-        if (product == null){
+        if (product == null) {
             throw new ProductIsNotExistException("Product is not exist!");
         }
         List<Product> products = userFromDb.getBoughtProducts();
         products.remove(product);
         this.userRepository.saveAndFlush(userFromDb);
+        return true;
     }
 
     @Override
-    public void buyProduct(String productId, String loggedUserStr) throws UserCannotSaveException {
+    public boolean buyProduct(String productId, String loggedUserStr) throws UserCannotSaveException {
         Product productForBye = this.productRepository.findById(productId).orElse(null);
         User loggedUser = this.userRepository.findByUsername(loggedUserStr).orElse(null);
         if (this.isInputDataCorrect(loggedUser, productForBye)
@@ -183,12 +176,13 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new UserCannotSaveException("User cannot be save!");
         }
+        return true;
     }
 
     @Override
     public UserServiceModel findUserById(String userId) {
         User user = this.userRepository.findById(userId).orElse(null);
-        if(user == null) {
+        if (user == null) {
             throw new UserWithThisIdNotFoundException(userId);
         }
         return this.modelMapper.map(user, UserServiceModel.class);
@@ -208,8 +202,4 @@ public class UserServiceImpl implements UserService {
     private boolean isInputDataCorrect(User loggedUser, Product productForBuy) {
         return loggedUser != null && productForBuy != null;
     }
-
-
-
-
 }
