@@ -1,4 +1,4 @@
-package shop.service;
+package shop.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,8 @@ import shop.models.entities.User;
 import shop.models.service.OrderServiceModel;
 import shop.repository.OrderRepository;
 import shop.repository.UserRepository;
+import shop.service.OrderService;
+import shop.service.UserService;
 import shop.tools.Tools;
 
 import java.util.List;

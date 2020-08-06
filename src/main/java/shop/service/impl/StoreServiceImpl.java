@@ -1,4 +1,4 @@
-package shop.service;
+package shop.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import shop.error.StoreExistException;
 import shop.models.entities.Store;
 import shop.models.service.StoreServiceModel;
 import shop.repository.StoreRepository;
+import shop.service.StoreService;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package shop.service;
+package shop.service.impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
+import shop.service.CloudinaryService;
 
 @Service
 public class CoudinaryServiceImpl implements CloudinaryService {

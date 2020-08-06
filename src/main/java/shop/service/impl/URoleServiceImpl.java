@@ -1,24 +1,30 @@
-package shop.service;
+package shop.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shop.error.UserIsNotExistException;
 import shop.models.entities.URole;
 import shop.models.entities.User;
 import shop.models.service.SaveNewRolesServiceModel;
+import shop.models.service.URoleServiceModel;
 import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
+import shop.service.URoleService;
 
 @Service
 public class URoleServiceImpl implements URoleService {
 
 	private final URoleRepository URoleRepository;
 	private final UserRepository userRepository;
+	private final ModelMapper modelMapper;
 
 	@Autowired
-	public URoleServiceImpl(URoleRepository URoleRepository, UserRepository userRepository) {
+	public URoleServiceImpl(URoleRepository URoleRepository, UserRepository userRepository,
+							ModelMapper modelMapper) {
 		this.URoleRepository = URoleRepository;
 		this.userRepository = userRepository;
+		this.modelMapper = modelMapper;
 	}
 
 	@Override
@@ -56,5 +62,11 @@ public class URoleServiceImpl implements URoleService {
 		}
 		this.userRepository.saveAndFlush(user);
 	}
+
+    @Override
+    public URoleServiceModel findByAuthority(String authority) {
+		URole uRole = this.URoleRepository.findByAuthority(authority).orElse(null);
+		return uRole!=null ? this.modelMapper.map(uRole, URoleServiceModel.class) : null;
+    }
 
 }

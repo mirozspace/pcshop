@@ -1,4 +1,4 @@
-package shop.service;
+package shop.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ import shop.repository.AddressRepository;
 import shop.repository.ProductRepository;
 import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
+import shop.service.URoleService;
+import shop.service.UserService;
 import shop.tools.Tools;
 
 import java.util.*;
@@ -79,7 +81,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel findUserByUsername(String loggedUserStr) {
         User u = this.userRepository.findByUsername(loggedUserStr).orElse(null);
-        return u != null ? this.modelMapper.map(u, UserServiceModel.class) : null;
+        if(u == null){
+            throw new UserIsNotExistException("User is not exist!");
+        }
+        return this.modelMapper.map(u, UserServiceModel.class);
     }
 
     @Override

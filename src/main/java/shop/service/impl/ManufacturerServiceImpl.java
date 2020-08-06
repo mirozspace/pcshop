@@ -1,4 +1,4 @@
-package shop.service;
+package shop.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import shop.error.UpdateManufacturerException;
 import shop.models.entities.Manufacturer;
 import shop.models.service.ManufacturerServiceModel;
 import shop.repository.ManufacturerRepository;
+import shop.service.ManufacturerService;
 import shop.util.DefaultManufacturerInformation;
 import javax.annotation.PostConstruct;
 import java.util.List;
