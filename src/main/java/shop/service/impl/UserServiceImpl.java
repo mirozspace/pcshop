@@ -21,6 +21,7 @@ import shop.service.URoleService;
 import shop.service.UserService;
 import shop.tools.Tools;
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,8 @@ public class UserServiceImpl implements UserService {
         User saved = this.userRepository.findByUsername(usm.getUsername()).orElse(null);
         addAddressToUser(usm, user);
         if (saved != null)
-            throw new UserWithUsernameAlreadyExistException("User with username " + saved.getUsername() + " already exists!");
+            throw new UserWithUsernameAlreadyExistException("User with username "
+                    + saved.getUsername() + " already exists!");
         if (this.userRepository.count() == 0) {
             this.uRoleService.seedRolesToDb();
             user.setAuthorities(new HashSet<>(this.URoleRepository.findAll()));
@@ -65,10 +67,10 @@ public class UserServiceImpl implements UserService {
             user.setAuthorities(new HashSet<>(Set.of(this.URoleRepository.findByAuthority("USER").orElse(null))));
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        User savedUser;
+        User savedUser = null;
         try {
             savedUser = this.userRepository.saveAndFlush(user);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
             throw new UserRegistrationException("Cannot register user with username " + user.getUsername());
         }
         return this.modelMapper.map(savedUser, UserServiceModel.class);

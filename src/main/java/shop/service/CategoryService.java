@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-    long initDefaultCategory();
+    boolean initDefaultCategory();
 
     CategoryServiceModel addCategory(CategoryServiceModel csm);
 

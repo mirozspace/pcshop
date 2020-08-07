@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface URoleService {
 
-    long seedRolesToDb();
+    boolean seedRolesToDb();
 
     boolean editUserRoles(SaveNewRolesServiceModel snrsm);
 

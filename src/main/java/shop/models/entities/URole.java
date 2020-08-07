@@ -18,6 +18,10 @@ public class URole extends BaseEntity implements GrantedAuthority {
     public URole(String authority) {
         this.authority = authority;
     }
+    public URole(String id, String authority) {
+        super(id);
+        this.authority = authority;
+    }
 
     @Override
     public String getAuthority() {

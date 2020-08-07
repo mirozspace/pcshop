@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shop.error.store.StoreAlreadyExistException;
+import shop.error.store.StoreIsNotExistException;
 import shop.models.entities.Store;
 import shop.models.service.StoreServiceModel;
 import shop.repository.StoreRepository;
@@ -35,8 +36,13 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public void deleteStore(String storeId) {
+    public boolean deleteStore(String storeId) {
+        Store store = this.storeRepository.findById(storeId).orElse(null);
+        if (store == null){
+            throw new StoreIsNotExistException("Store is not exist");
+        }
         this.storeRepository.deleteById(storeId);
+        return true;
     }
 
     @Override

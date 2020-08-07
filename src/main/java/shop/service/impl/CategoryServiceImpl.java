@@ -30,13 +30,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @PostConstruct
     @Override
-    public long initDefaultCategory() {
+    public boolean initDefaultCategory() {
         if (this.categoryRepository.count() == 0) {
             for (DefaultCategoryInformation value : DefaultCategoryInformation.values()) {
                 this.categoryRepository.saveAndFlush(new Category(value.getName(), value.getDescription()));
             }
         }
-        return this.categoryRepository.count();
+        return true;
     }
 
     @Override

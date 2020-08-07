@@ -22,7 +22,7 @@ public class User extends BaseEntity implements UserDetails {
     //private boolean newsLetter;
     private String phoneNumber;
     private LocalDateTime createdDate = LocalDateTime.now();
-    private List<Product> buyedProducts;
+    private List<Product> boughtProducts;
 
     private Set<URole> authorities;
 
@@ -52,11 +52,11 @@ public class User extends BaseEntity implements UserDetails {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<Product> getBoughtProducts() {
-        return buyedProducts;
+        return boughtProducts;
     }
 
     public void setBoughtProducts(List<Product> buyedProducts) {
-        this.buyedProducts = buyedProducts;
+        this.boughtProducts = buyedProducts;
     }
 
     @Column(unique = true, nullable = false, updatable = false)

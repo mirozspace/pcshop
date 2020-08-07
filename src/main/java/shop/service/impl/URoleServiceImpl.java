@@ -3,6 +3,7 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shop.error.role.URoleIsNotExist;
 import shop.error.user.UserIsNotExistException;
 import shop.models.entities.URole;
 import shop.models.entities.User;
@@ -28,14 +29,14 @@ public class URoleServiceImpl implements URoleService {
 	}
 
 	@Override
-	public long seedRolesToDb() {
+	public boolean seedRolesToDb() {
 		if (this.URoleRepository.count() == 0) {
 			this.URoleRepository.saveAndFlush(new URole("ADMIN"));
 			this.URoleRepository.saveAndFlush(new URole("MANAGER"));
 			this.URoleRepository.saveAndFlush(new URole("WORKER"));
 			this.URoleRepository.saveAndFlush(new URole("USER"));
 		}
-		return this.URoleRepository.count();
+		return true;
 	}
 
 	@Override
@@ -68,7 +69,10 @@ public class URoleServiceImpl implements URoleService {
     @Override
     public URoleServiceModel findByAuthority(String authority) {
 		URole uRole = this.URoleRepository.findByAuthority(authority).orElse(null);
-		return uRole!=null ? this.modelMapper.map(uRole, URoleServiceModel.class) : null;
+		if (uRole == null){
+			throw new URoleIsNotExist("User role is not exist!");
+		}
+		return this.modelMapper.map(uRole, URoleServiceModel.class);
     }
 
 }

@@ -15,6 +15,10 @@ public abstract class BaseEntity {
     public BaseEntity() {
     }
 
+    public BaseEntity(String id){
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(generator = "uuid-string")
     @GenericGenerator(
