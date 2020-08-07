@@ -2,7 +2,6 @@ package shop.service;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -74,9 +73,10 @@ class URoleServiceTest {
     }
 
     @Test
-    public void editUserRoles_whenNewRoleIsNull() {
-        Mockito.when(this.userRepository.findById("123324375y"))
-                .thenReturn(this.getReturnedUser());
+    public void editUserRoles_whenNewRoleIsCorrect_ShouldReturnCorrect() {
+        Mockito.when(this.userRepository.findById("39487534sdf"))
+                .thenReturn(Optional.of(this.getReturnedUser()));
+
         Mockito.when(this.uRoleRepository.findByAuthority("USER"))
                 .thenReturn(Optional.of(new URole() {{
                             setId("123");
@@ -97,17 +97,21 @@ class URoleServiceTest {
                     setId("123");
                     setId("WORKER");
                 }}));
+        //Mockito.when(this.userRepository.saveAndFlush(any(User.class)))
         SaveNewRolesServiceModel saveNewRolesServiceModel
                 = new SaveNewRolesServiceModel(){{
                     setRoleAdmin("1");
                     setRoleManager("1");
                     setRoleWorker("1");
+                    setUserId("39487534sdf");
                     setId("0000");
-        }}
+        }};
+        System.out.println();
+        Assert.assertTrue(this.uRoleService.editUserRoles(saveNewRolesServiceModel));
 
     }
 
-    private Optional<User> getReturnedUser() {
+    public User getReturnedUser() {
         Set<URole> rolesSet = new HashSet<>(Set.of(
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
