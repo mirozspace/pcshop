@@ -3,7 +3,7 @@ package shop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import shop.error.role.URoleIsNotExist;
+import shop.error.role.URoleIsNotExistException;
 import shop.error.user.UserIsNotExistException;
 import shop.models.entities.URole;
 import shop.models.entities.User;
@@ -35,42 +35,49 @@ public class URoleServiceImpl implements URoleService {
 			this.URoleRepository.saveAndFlush(new URole("MANAGER"));
 			this.URoleRepository.saveAndFlush(new URole("WORKER"));
 			this.URoleRepository.saveAndFlush(new URole("USER"));
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean editUserRoles(SaveNewRolesServiceModel snrsm) {
+		boolean isHasChange = false;
 		User user = this.userRepository.findById(snrsm.getId()).orElse(null);
 		if (user == null) {
 			throw new UserIsNotExistException("User is not Exist!");
 		}
 		user.getAuthorities().clear();
-
 		URole roleUser = this.URoleRepository.findByAuthority("USER").orElse(null);
 		user.getAuthorities().add(roleUser);
 
 		if (snrsm.getRoleAdmin().equals("1")) {
 			URole roleAdmin = this.URoleRepository.findByAuthority("ADMIN").orElse(null);
 			user.getAuthorities().add(roleAdmin);
+			isHasChange = true;
 		}
 		if (snrsm.getRoleManager().equals("1")) {
 			URole roleManager = this.URoleRepository.findByAuthority("MANAGER").orElse(null);
 			user.getAuthorities().add(roleManager);
+			isHasChange = true;
 		}
 		if (snrsm.getRoleWorker().equals("1")) {
 			URole roleWorker = this.URoleRepository.findByAuthority("WORKER").orElse(null);
 			user.getAuthorities().add(roleWorker);
+			isHasChange = true;
 		}
 		this.userRepository.saveAndFlush(user);
-		return true;
+		return isHasChange;
 	}
 
     @Override
     public URoleServiceModel findByAuthority(String authority) {
+		if(authority == null){
+			throw new URoleIsNotExistException("URole is not exist!");
+		}
 		URole uRole = this.URoleRepository.findByAuthority(authority).orElse(null);
 		if (uRole == null){
-			throw new URoleIsNotExist("User role is not exist!");
+			throw new URoleIsNotExistException("User role is not exist!");
 		}
 		return this.modelMapper.map(uRole, URoleServiceModel.class);
     }

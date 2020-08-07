@@ -38,23 +38,47 @@ class UserServiceTest {
     @MockBean
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Test
-    void register_whenAllIsValid_shouldSave() {
 
+    @Test
+    public void findUserById_whenDataIsCorrect_ShouldReturnUser() {
+        User returnUser = this.getReturnedUser();
+        UserServiceModel usm = this.getInputFormUserServiceModel();
+        Mockito.when(this.userRepository.findById(usm.getId())).thenReturn(Optional.of(returnUser));
+        UserServiceModel actual = this.userService.findUserById(usm.getId());
+        Assert.assertEquals(usm.getId(), actual.getId());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private List<URole> get4RolesInList() {
         List<URole> roles = Arrays.asList(
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9993", "WORKER"),
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
         );
+        return roles;
+    }
 
-        Set<URole> rolesSet = new HashSet<>(Set.of(
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9993", "WORKER"),
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
-        ));
-
+    private UserServiceModel getInputFormUserServiceModel() {
         UserServiceModel inputUser = new UserServiceModel();
         inputUser.setUsername("desito");
         inputUser.setPassword("23445f456");
@@ -68,7 +92,16 @@ class UserServiceTest {
         inputUser.setPostCode("1000");
         inputUser.setStreet("Vitoshla");
         inputUser.setStreetNumb("1A");
+        return inputUser;
+    }
 
+    private User getReturnedUser() {
+        Set<URole> rolesSet = new HashSet<>(Set.of(
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9993", "WORKER"),
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
+        ));
         User returnedUser = new User();
         Address actualUserAddress = new Address();
         returnedUser.setId("39487534sdf");
@@ -87,29 +120,35 @@ class UserServiceTest {
         actualUserAddress.setStreetNumb("1A");
         returnedUser.setAddress(actualUserAddress);
         returnedUser.setAuthorities(rolesSet);
-
-
-        Mockito.when(this.userRepository.count()).thenReturn(10L);
-        Mockito.when(this.uRoleRepository.findAll())
-                .thenReturn(roles);
-
-        Mockito.when(userRepository.saveAndFlush(any(User.class)))
-                .thenReturn(returnedUser);
-
-        UserServiceModel actual = userService.register(inputUser);
-
-        Assert.assertEquals(inputUser.getUsername(), actual.getUsername());
+        return returnedUser;
     }
 
-    @Test
-    public void findUserById_whenDataIsCorrect_ShouldReturnUser() {
-        User returnUser = new User();
-        returnUser.setId("uygfre878347hasd");
-        UserServiceModel usm = new UserServiceModel();
-        usm.setId("uygfre878347hasd");
-        Mockito.when(this.userRepository.findById(usm.getId())).thenReturn(Optional.of(returnUser));
-        UserServiceModel actual = this.userService.findUserById(usm.getId());
-        Assert.assertEquals(usm.getId(), actual.getId());
+    private User getActualUser() {
+        Set<URole> rolesSet = new HashSet<>(Set.of(
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9993", "WORKER"),
+                new URole("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
+        ));
+        User returnedUser = new User();
+        Address actualUserAddress = new Address();
+        returnedUser.setId("39487534sdf");
+        returnedUser.setUsername("desito");
+        returnedUser.setPassword("23445f456");
+        returnedUser.setEmail("desito@desito.bg");
+        returnedUser.setFirstName("Desislava");
+        returnedUser.setLastName("Ivanova");
+        returnedUser.setPhoneNumber("+359000000000");
+        returnedUser.setBoughtProducts(new ArrayList<>());
+        actualUserAddress.setId("nfgkdfg76584js");
+        actualUserAddress.setCountry("Bulgaria");
+        actualUserAddress.setCity("Sofia");
+        actualUserAddress.setPostCode("1000");
+        actualUserAddress.setStreet("Vitoshla");
+        actualUserAddress.setStreetNumb("1A");
+        returnedUser.setAddress(actualUserAddress);
+        returnedUser.setAuthorities(rolesSet);
+        return returnedUser;
     }
 
 

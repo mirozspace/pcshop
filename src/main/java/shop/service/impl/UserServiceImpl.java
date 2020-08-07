@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserServiceModel register(UserServiceModel usm) {
-
         User user = this.modelMapper.map(usm, User.class);
         User saved = this.userRepository.findByUsername(usm.getUsername()).orElse(null);
         addAddressToUser(usm, user);
