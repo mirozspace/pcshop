@@ -210,6 +210,7 @@ public class UserServiceImpl implements UserService {
 		if(userForDelete == null) {
 			throw new UserIsNotExistException("User is not exist!");
 		}
+		userForDelete.getAuthorities().clear();
 		this.userRepository.deleteById(userId);
 		return true;
 	}

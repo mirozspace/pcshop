@@ -108,7 +108,7 @@ public class ProductController {
 
         ProductServiceModel psm = this.modelMapper.map(pbmupdate, ProductServiceModel.class);
         this.productService.updateProduct(psm);
-        return "redirect:/product/product-update";
+        return "redirect:/home";
     }
 
     @ExceptionHandler({ProductIsNotExistException.class})
