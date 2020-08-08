@@ -177,6 +177,8 @@ public class UserController {
         this.orderService.saveOrders();
         return REDIRECT_TO_HOME;
     }
+    
+    
 
     @ExceptionHandler({AddressIsNotExistException.class, UserWithUsernameAlreadyExistException.class,
             UsernameNotFoundException.class, UserRegistrationException.class,
@@ -199,6 +201,8 @@ public class UserController {
         }
         return totalPrice;
     }
+    
+    
 /*@GetMapping(GET_MAPPING_USER_LOGOUT)
     public String logout() {
         //something

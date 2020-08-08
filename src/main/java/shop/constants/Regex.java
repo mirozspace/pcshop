@@ -14,8 +14,9 @@ public abstract class Regex {
     public static final String USERNAME_REGEX_ERROR_MSG = "Username must contains only lettes and digits!";
     public static final String USERNAME_MIN_MAX_ERROR_MSG = "Username is not in range (2 - 20)";
     /*PASSWORD ********************************************************************************************* */
-    public static final String PASSWORD_REGEX = "^[a-zA-Z0-9]+$";
-    public static final String PASSWORD_REGEX_ERROR_MSG = "Password must contains only lettes and digits!";
+    public static final String PASSWORD_REGEX = "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\"";
+    public static final String PASSWORD_REGEX_ERROR_MSG = "Minimum eight characters, at least one uppercase letter, "
+    		+ "one lowercase letter, one number and one special character!";
     public static final String PASSWORD_MIN_MAX_ERROR_MSG = "Password is not in range (8 - 20)!";
     /*EMAIL ************************************************************************************************ */
     public static final String EMAIL_REGEX 

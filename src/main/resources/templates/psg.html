@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <th:block th:include="~{/fragments/navbar}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <div class="container m-4">
+        <div class="row">
+            <div class="col-md-3">
+                <th:block th:include="~{/fragments/categories-menu}"></th:block>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h-pages">Password Generator</h4>
+                        <hr>
+                        
+                        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center">
+                
+                <form th:action="@{/psg}" th:method="post"  th:object="${urbm}">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" name="lowercase" value="checked" checked>
+                      All lowercase Latin letters ( a-z )
+                    </label>
+                  </div>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" name="uppercase" value="checked" checked>
+                      All uppercase Latin letters ( A-Z )
+                    </label>
+                  </div>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" name="digits" value="checked" checked>
+                      All digits ( 0 - 9 )
+                    </label>
+                  </div>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" name="specialSymbols" value="checked" checked>
+                      Special symbols ( !@#$%^&*() )
+                    </label>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="form-group">
+                    <label for="">Lenth of password ( 15 - 150 )</label>
+                    <input type="number" min="15" max="150" class="form-control" name="lengthOfPassword" id="" aria-describedby="helpId" placeholder=""
+                    value="15">
+<!--                    <small id="helpId" class="form-text text-muted">Help text</small>-->
+                  </div>
+                  <br>
+                  <br>
+                  <button type="submit" class="bbs-1">Generate Your Password!</button>
+                </form>
+              <br><br><br>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-center">
+              <div class="bbs-1" th:text ="${newPass}"></div>
+            </div>
+          </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <th:block th:include="~{/fragments/footer}"></th:block>
+
+</body>
+
+</html>

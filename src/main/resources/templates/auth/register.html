@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <form th:action="@{/user/register}" th:method="post" th:object="${urbm}">
+                <form th:action="@{/user/register}" th:method="post" th:object="${newPasswordViewModel}">
 
 
                     <div class="row">
@@ -58,8 +58,8 @@
                             <label for="password">Password:</label>
                             <input type="password" class="form-control" name="password" id=""
                                    aria-describedby="helpId" placeholder="Password">
-                            <small id="helpId" class="form-text text-muted span-info-text">Password can contains letters, 
-                            digits and special symbols (8-20 symbols).</small>
+                            <small id="helpId" class="form-text text-muted span-info-text">Minimum eight characters, 
+                            at least one uppercase letter, one lowercase letter, one number and one special character.</small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('password')}" th:text="${error}"></small>
                         </div>
                     </div>
@@ -67,8 +67,8 @@
                         <div class="form-group">
                             <label>Repeat Password:</label>
                             <input type="password" class="form-control" name="confirmPassword" id="" placeholder="Repeat Password">
-                            <small id="helpId" class="form-text text-muted span-info-text">Password can contains letters, 
-                            digits and special symbols (8-20 symbols).</small>
+                            <small id="helpId" class="form-text text-muted span-info-text">Minimum eight characters, 
+                            at least one uppercase letter, one lowercase letter, one number and one special character.</small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}"></small>
                         </div>
                     </div>

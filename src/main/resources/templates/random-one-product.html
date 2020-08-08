@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"></th:block>
+
+<body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+	<script>
+		
+		$('#randomProduct').click(() => {
+		    fetch('http://localhost:8000/random/product/one')
+		        .then((response) => response.json())
+		        .then((json) => json.forEach((x, y) => {
+
+		                let namePr = x.name;
+		                document.getElementById("namePr").innerHTML = namePr;
+		                document.getElementById("test").innerHTML = "TEST";
+		            }));
+		});
+		
+		
+	</script>
+
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<th:block th:include="~{/fragments/navbar}"></th:block>
+			</div>
+		</div>
+	</div>
+
+	<div class="container m-4">
+		<div class="row">
+			<div class="col-md-3">
+				<th:block th:include="~{/fragments/categories-menu}"></th:block>
+			</div>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-12">
+						<h4 class="h-pages">Random Product AJAX</h4>
+						<hr>
+
+						<button id="randomProduct" class="bbs-1">Show Random Product</button>
+						<h5 id="namePr"></h5>
+						<h5 id="test"></h5>
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<th:block th:include="~{/fragments/footer}"></th:block>
+
+</body>
+
+</html>

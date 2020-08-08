@@ -305,6 +305,14 @@ input:checked+.slider:before {
 	height: 150px;
 }
 
+
+
+.result-pass{
+    margin: 7px;
+    padding: 7px;
+    border: 1px solid blue;
+}
+
 /* .table_row_cart {
 	border: 1px solid black;
 } */
