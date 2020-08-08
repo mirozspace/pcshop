@@ -19,4 +19,9 @@ public class FileTools {
         }
         writer.close();
     }
+    
+    public void deleteContentOfFile(String filePath) {
+    	
+    	
+    }
 }

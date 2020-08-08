@@ -10,6 +10,9 @@ public class StoreServiceModel extends BaseServiceModel{
     private String email;
     private String phone;
 
+    public StoreServiceModel() {
+    }
+    
     public StoreServiceModel(String name, String owners, Address address, String email, String phone) {
         this.name = name;
         this.owners = owners;

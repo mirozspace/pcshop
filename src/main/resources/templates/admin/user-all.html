@@ -31,7 +31,6 @@
                             <td>Username</td>
                             <td>Roles</td>
                             <td></td>
-                            <td></td>
                         </tr>
                         <th:block th:each="user: ${allUsers}">
                             <tr>
@@ -42,8 +41,7 @@
                                 </td>
                                 <td><a th:href="@{/admin/edit/roles/{userId}(userId = ${user.getId()})}"
                                         class="bbs-1">Edit User</a></td>
-                                <td><a th:href="@{/user/delete/}" class="bbs-1">Delete</a>
-                                </td>
+                              
                             </tr>
                         </th:block>
                     </tbody>

@@ -86,6 +86,15 @@ public class AdminController {
 		return "redirect:/home";
 	}
 	
+	
+	@PageTitle(name = "Admin")
+	@PreAuthorize("hasAnyAuthority('ADMIN')")
+	@GetMapping("/user/delete/{userId}")
+	public String deleteUserById(@PathVariable("userId") String userId) {
+		this.userService.deleteUserById(userId);
+		return "admin/user-all";
+		
+	}
 
 	@SuppressWarnings("unused")
 	@Deprecated

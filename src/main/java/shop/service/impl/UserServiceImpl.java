@@ -203,4 +203,14 @@ public class UserServiceImpl implements UserService {
     private boolean isInputDataCorrect(User loggedUser, Product productForBuy) {
         return loggedUser != null && productForBuy != null;
     }
+
+	@Override
+	public boolean deleteUserById(String userId) {
+		User userForDelete = this.userRepository.findById(userId).orElse(null);
+		if(userForDelete == null) {
+			throw new UserIsNotExistException("User is not exist!");
+		}
+		this.userRepository.deleteById(userId);
+		return true;
+	}
 }

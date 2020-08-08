@@ -26,4 +26,6 @@ public interface UserService extends UserDetailsService {
 
     boolean removeOneProductCart(String productId, String loggedUser);
 
+	boolean deleteUserById(String userId);
+
 }
