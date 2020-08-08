@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shop.error.*;
 import shop.error.product.ProductIsNotExistException;
 import shop.models.bindings.ProductBindingModel;
+import shop.models.bindings.ProductUpdateBindingModel;
 import shop.models.service.ProductServiceModel;
 import shop.models.views.CategoryViewModel;
 import shop.models.views.ManufacturerViewModel;
@@ -62,17 +63,17 @@ public class ProductController {
 
     @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @PostMapping(POST_MAPPING_PRODUCT_ADD)
-    public String productAddConfirm(@Valid @ModelAttribute("pabm") ProductBindingModel pabm,
+    public String productAddConfirm(@Valid @ModelAttribute("pabm") ProductUpdateBindingModel pubm,
                                     BindingResult bindingResult,
                                     RedirectAttributes redirectAttributes,
                                     Model model) throws IOException {
     	System.out.println();
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.pabm", bindingResult);
-            redirectAttributes.addFlashAttribute("pabm", pabm);
+            redirectAttributes.addFlashAttribute("pubm", pubm);
             return REDIRECT_TO_PRODUCT_ADD;
         }
-        this.productService.addProduct(this.modelMapper.map(pabm, ProductServiceModel.class));
+        this.productService.addProduct(this.modelMapper.map(pubm, ProductServiceModel.class));
         return REDIRECT_TO_HOME;
     }
 

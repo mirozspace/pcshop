@@ -32,18 +32,18 @@
                         <img th:src="${product.getImageUrls().get(0)}" class="card-img-top image-one-product"
                             alt="Image of product" />
                         <div class="title product-name"><span th:text="${product.name}"></span></div>
-                        <!-- <div class="product-description"><span th:text="${product.description}"></span></div> -->
+                        <div class="product-description"><span th:text="${product.description}"></span></div>
                         <div class="product-price"><span th:text="${product.price}"></span> &euro;</div>
                         <a th:href="@{/user/add-to-cart/{productId}(productId = ${product.getId()}) }"
                             class="myButton-buy">Buy Product</a>
 
                         <th:block sec:authorize="hasAnyAuthority('ADMIN')">
                             <a th:href="@{/product/delete/{productId}(productId = ${product.getId()})}"
-                                class="myButton">Delete</a>
+                                class="bbs-1">Delete</a>
                         </th:block>
                         <th:block sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
                             <a th:href="@{/product/edit/{productId}(productId = ${product.getId()})}"
-                                class="myButton">Edit</a>
+                                class="bbs-1">Edit</a>
                         </th:block>
 
                     </div>

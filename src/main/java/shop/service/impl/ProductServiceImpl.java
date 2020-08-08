@@ -96,10 +96,15 @@ public class ProductServiceImpl implements ProductService {
 
         for (MultipartFile photo : psm.getPhotos()) {
             if (!photo.isEmpty()) {
-                List<String> productURLs = new ArrayList<>();
+            	
+            	product.getImageUrls().clear();
+                //List<String> productURLs = new ArrayList<>();
                 String imgUrl = this.cloudinaryService.uploadImage(photo);
-                productURLs.set(0, imgUrl);
-                product.setImageUrls(productURLs);
+                product.getImageUrls().add(imgUrl);
+                //productURLs.clear();
+                //productURLs.add(imgUrl);
+                ////productURLs.set(0, imgUrl);
+                //product.setImageUrls(productURLs);
                 break;
             }
         }

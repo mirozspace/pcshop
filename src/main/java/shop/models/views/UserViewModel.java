@@ -84,4 +84,6 @@ public class UserViewModel extends BaseViewModel{
 	public void setAuthorities(Set<URoleServiceModel> authorities) {
 		this.authorities = authorities;
 	}
+	
+	
 }

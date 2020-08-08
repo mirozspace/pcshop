@@ -138,6 +138,7 @@ public class ProductBindingModel extends BaseBindingModel {
         this.manufacturerF = manufacturerF;
     }
 
+    //??? securitys
     public MultipartFile[] getPhotos() {
         return photos;
     }

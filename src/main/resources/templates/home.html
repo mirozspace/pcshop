@@ -32,7 +32,7 @@
                         <img th:src="${product.getImageUrls().get(0)}" class="card-img-top image-one-product"
                             alt="Image of product" />
                         <div class="title product-name"><span th:text="${product.name}"></span></div>
-                        <!-- <div class="product-description"><span th:text="${product.description}"></span></div> -->
+                        <div class="product-description"><span th:text="${product.description}"></span></div>
                         <div class="product-price"><span th:text="${product.price}"></span> &euro;</div>
                         <a th:href="@{/user/add-to-cart/{productId}(productId = ${product.getId()}) }"
                             class="myButton-buy">Buy Product</a>
