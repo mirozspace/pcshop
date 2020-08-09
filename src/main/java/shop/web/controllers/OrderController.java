@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
 
-    @SuppressWarnings("unused")
 	private final OrderService orderService;
     @SuppressWarnings("unused")
 	private final ModelMapper modelMapper;

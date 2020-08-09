@@ -7,6 +7,8 @@ import shop.error.CustomBaseException;
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "User With This Id is not found!")
 public class UserWithThisIdNotFoundException extends CustomBaseException {
 
+	private static final long serialVersionUID = 1L;
+
 	public UserWithThisIdNotFoundException(String message) {
 		super(message);
 	}

@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Store wit this name exist!")
 public class StoreAlreadyExistException extends CustomBaseException {
-    public StoreAlreadyExistException(String msg) {
+  
+	private static final long serialVersionUID = 1L;
+
+	public StoreAlreadyExistException(String msg) {
         super(msg);
     }
 }

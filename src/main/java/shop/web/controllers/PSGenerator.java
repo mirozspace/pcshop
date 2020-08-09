@@ -7,10 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import shop.models.bindings.UserRegisterBindingModel;
 import shop.models.service.NewPasswordServiceModel;
 import shop.models.views.NewPasswordViewModel;
 import shop.service.NewPasswordService;

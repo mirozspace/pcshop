@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "User login is not correct!!")
 public class UserLogIsNotCorrect extends CustomBaseException {
-    public UserLogIsNotCorrect(String message) {
+   
+	private static final long serialVersionUID = 1L;
+
+	public UserLogIsNotCorrect(String message) {
         super(message);
     }
 }

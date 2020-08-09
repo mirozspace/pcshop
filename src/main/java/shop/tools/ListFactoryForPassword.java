@@ -34,7 +34,7 @@ public class ListFactoryForPassword {
     }
 
     private void setSpecialSymbols() {
-        this.specialSymbols = charArrayToList("-/.^&*_!@%+>)");
+        this.specialSymbols = charArrayToList("-/.^&*_!@%+>)(");
     }
 
     private void setCapLetters() {

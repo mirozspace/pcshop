@@ -7,7 +7,9 @@ import shop.error.CustomBaseException;
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Username already exist")
 public class UserWithUsernameAlreadyExistException extends CustomBaseException {
 
-    public UserWithUsernameAlreadyExistException(String msg) {
+	private static final long serialVersionUID = 1L;
+
+	public UserWithUsernameAlreadyExistException(String msg) {
         super(msg);
     }
 }

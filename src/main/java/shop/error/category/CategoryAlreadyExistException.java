@@ -7,7 +7,9 @@ import shop.error.CustomBaseException;
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Category Already exist")
 public class CategoryAlreadyExistException extends CustomBaseException {
 
-    public CategoryAlreadyExistException(String message) {
+	private static final long serialVersionUID = 1L;
+
+	public CategoryAlreadyExistException(String message) {
         super(message);
     }
 }

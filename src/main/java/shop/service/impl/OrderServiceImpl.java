@@ -12,7 +12,6 @@ import shop.models.service.OrderServiceModel;
 import shop.repository.OrderRepository;
 import shop.repository.UserRepository;
 import shop.service.OrderService;
-import shop.service.UserService;
 import shop.tools.Tools;
 
 import java.util.List;
@@ -24,16 +23,14 @@ public class OrderServiceImpl implements OrderService {
     private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
     private final Tools tools;
-	private final UserService userService;
     private final UserRepository userRepository;
 
     @Autowired
     public OrderServiceImpl(ModelMapper modelMapper, OrderRepository orderRepository,
-                            Tools tools, UserService userService, UserRepository userRepository) {
+                            Tools tools, UserRepository userRepository) {
         this.modelMapper = modelMapper;
         this.orderRepository = orderRepository;
         this.tools = tools;
-        this.userService = userService;
         this.userRepository = userRepository;
     }
 

@@ -19,7 +19,8 @@ public class AppCloudinaryConfig {
     @Value("${cloudinary.api-secret}")
     private String cloudApiSecret;
 
-    @Bean
+    @SuppressWarnings("serial")
+	@Bean
     public Cloudinary cloudinary(){
         return new Cloudinary(new HashMap<String,Object>(){{
             put("cloud_name",cloudApiName);

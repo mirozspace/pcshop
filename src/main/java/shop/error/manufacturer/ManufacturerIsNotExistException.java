@@ -7,7 +7,12 @@ import shop.error.CustomBaseException;
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Manufacturer cannot be saved!")
 public class ManufacturerIsNotExistException extends CustomBaseException {
 
-    public ManufacturerIsNotExistException(String msg) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ManufacturerIsNotExistException(String msg) {
         super(msg);
     }
 }

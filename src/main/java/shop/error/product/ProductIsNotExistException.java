@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "This product is not exist!")
 public class ProductIsNotExistException extends CustomBaseException {
-    public ProductIsNotExistException(String msg) {
+
+	private static final long serialVersionUID = 1L;
+
+	public ProductIsNotExistException(String msg) {
         super(msg);
     }
 }

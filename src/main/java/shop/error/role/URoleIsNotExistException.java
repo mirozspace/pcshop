@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "User role is not exist!")
 public class URoleIsNotExistException extends CustomBaseException {
-    public URoleIsNotExistException(String msg) {
+   
+	private static final long serialVersionUID = 1L;
+
+	public URoleIsNotExistException(String msg) {
         super(msg);
     }
 }

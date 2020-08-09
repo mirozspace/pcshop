@@ -6,7 +6,12 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Manufacturer cannot be update!")
 public class ManufacturerUpdateException extends CustomBaseException {
-    public ManufacturerUpdateException(String msg) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ManufacturerUpdateException(String msg) {
         super(msg);
     }
 }

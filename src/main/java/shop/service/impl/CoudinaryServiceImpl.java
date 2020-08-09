@@ -21,7 +21,8 @@ public class CoudinaryServiceImpl implements CloudinaryService {
         this.cloudinary = cloudinary;
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public String uploadImage(MultipartFile multipartFile) throws IOException {
         File file = File.createTempFile("temp-file", multipartFile.getOriginalFilename());
         multipartFile.transferTo(file);

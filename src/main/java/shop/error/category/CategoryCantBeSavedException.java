@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Category cannot be saved!")
 public class CategoryCantBeSavedException extends CustomBaseException {
-    public CategoryCantBeSavedException(String message) {
+
+	private static final long serialVersionUID = 1L;
+
+	public CategoryCantBeSavedException(String message) {
         super(message);
     }
 }

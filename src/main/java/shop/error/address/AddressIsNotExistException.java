@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Address is not Exist (internal error)!")
 public class AddressIsNotExistException extends CustomBaseException {
-    public AddressIsNotExistException(String msg) {
+
+	private static final long serialVersionUID = 1L;
+
+	public AddressIsNotExistException(String msg) {
         super(msg);
     }
 }

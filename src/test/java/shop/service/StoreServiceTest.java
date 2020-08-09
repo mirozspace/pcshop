@@ -1,20 +1,20 @@
 package shop.service;
 
-import static org.mockito.ArgumentMatchers.any;
+//import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 
 import java.util.Optional;
 
-import org.mockito.ArgumentMatchers.*;
+//import org.mockito.ArgumentMatchers.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+//import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+//import org.springframework.boot.test.mock.mockito.MockBean;
 
-import shop.error.store.StoreAlreadyExistException;
+//import shop.error.store.StoreAlreadyExistException;
 import shop.models.entities.Address;
 import shop.models.entities.Store;
 import shop.models.service.StoreServiceModel;

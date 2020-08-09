@@ -14,7 +14,8 @@ public abstract class Regex {
     public static final String USERNAME_REGEX_ERROR_MSG = "Username must contains only lettes and digits!";
     public static final String USERNAME_MIN_MAX_ERROR_MSG = "Username is not in range (2 - 20)";
     /*PASSWORD ********************************************************************************************* */
-    public static final String PASSWORD_REGEX = "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\"";
+    //public static final String PASSWORD_REGEX = "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\"";
+    public static final String PASSWORD_REGEX = "^[a-zA-Z0-9-\\/.^&*_!@%+>)(]+$";
     public static final String PASSWORD_REGEX_ERROR_MSG = "Minimum eight characters, at least one uppercase letter, "
     		+ "one lowercase letter, one number and one special character!";
     public static final String PASSWORD_MIN_MAX_ERROR_MSG = "Password is not in range (8 - 20)!";
@@ -53,7 +54,7 @@ public abstract class Regex {
     public static final String STREET_REGEX_ERROR_MSG = "Street must contains only letters!";
     public static final String STREET_MIN_MAX_ERROR_MSG = "Street is not correct (2-70).";
     /*STREET NUMBER **************************************************************************************** */
-    public static final String STREET_NUMBER_REGEX = "^[0-9]{1,3}$";
+    public static final String STREET_NUMBER_REGEX = "^[0-9a-zA-z ]+$";
     public static final String STREET_NUMBER_REGEX_ERROR_MSG 
     	= "Street number must contains only digits and sing plus, and 1 to 3 symbols!";
     public static final String STREET_NUMBER_MIN_MAX_ERROR_MSG = "Street is not correct (1-3 symbols)!";

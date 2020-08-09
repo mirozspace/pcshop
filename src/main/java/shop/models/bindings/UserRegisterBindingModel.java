@@ -134,7 +134,7 @@ public class UserRegisterBindingModel {
         this.street = street;
     }
 
-    @Length(min = 2, max = 70, message = STREET_NUMBER_MIN_MAX_ERROR_MSG)
+    @Length(min = 1, max = 3, message = STREET_NUMBER_MIN_MAX_ERROR_MSG)
     @Pattern(regexp = STREET_NUMBER_REGEX, message = STREET_NUMBER_REGEX_ERROR_MSG)
     public String getStreetNumb() {
         return streetNumb;

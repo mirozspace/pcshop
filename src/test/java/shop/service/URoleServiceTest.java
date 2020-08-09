@@ -72,7 +72,8 @@ class URoleServiceTest {
         });
     }
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void editUserRoles_whenNewRoleIsCorrect_ShouldReturnCorrect() {
         Mockito.when(this.userRepository.findById("39487534sdf"))
                 .thenReturn(Optional.of(this.getReturnedUser()));

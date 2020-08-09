@@ -12,14 +12,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import shop.models.entities.Address;
 import shop.models.entities.URole;
 import shop.models.entities.User;
-import shop.models.service.AddressServiceModel;
+//import shop.models.service.AddressServiceModel;
 import shop.models.service.UserServiceModel;
 import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
 
 import java.util.*;
 
-import static org.mockito.ArgumentMatchers.any;
+//import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -68,7 +68,8 @@ class UserServiceTest {
 
 
 
-    private List<URole> get4RolesInList() {
+    @SuppressWarnings("unused")
+	private List<URole> get4RolesInList() {
         List<URole> roles = Arrays.asList(
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
@@ -123,7 +124,8 @@ class UserServiceTest {
         return returnedUser;
     }
 
-    private User getActualUser() {
+    @SuppressWarnings("unused")
+	private User getActualUser() {
         Set<URole> rolesSet = new HashSet<>(Set.of(
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
                 new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),

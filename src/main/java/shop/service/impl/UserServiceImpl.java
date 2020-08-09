@@ -21,7 +21,6 @@ import shop.service.URoleService;
 import shop.service.UserService;
 import shop.tools.Tools;
 
-import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 

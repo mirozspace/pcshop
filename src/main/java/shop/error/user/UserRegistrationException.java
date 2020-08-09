@@ -6,7 +6,10 @@ import shop.error.CustomBaseException;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "User registration exception!")
 public class UserRegistrationException extends CustomBaseException {
-    public UserRegistrationException(String msg) {
+
+	private static final long serialVersionUID = 1L;
+
+	public UserRegistrationException(String msg) {
         super(msg);
     }
 }

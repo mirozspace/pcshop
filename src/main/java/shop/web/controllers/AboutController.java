@@ -1,6 +1,5 @@
 package shop.web.controllers;
 
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import shop.annotation.PageTitle;
