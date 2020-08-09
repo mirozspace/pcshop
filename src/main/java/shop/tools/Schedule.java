@@ -1,5 +1,6 @@
 package shop.tools;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,17 +25,11 @@ public class Schedule {
 	
 	@Async
 	@Scheduled(fixedDelay = 120000, initialDelay = 1800000) //every 30 minutes after start 
-	public void showDateAndTime() {
+	public void showDateAndTime() throws IOException {
 		
 		this.fileTools.deleteContentOfFile(FilePaths.FILE_LOG_PATH);
 		System.out.println(ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
 		System.out.println("Log is deleted");
-		
-		
-		/*
-		 * long now = System.currentTimeMillis() / 1000; System.out.println(
-		 * "Fixed rate task with one second initial delay - " + now);
-		 */
     }
 
 }

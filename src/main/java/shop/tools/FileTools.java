@@ -20,8 +20,9 @@ public class FileTools {
         writer.close();
     }
     
-    public void deleteContentOfFile(String filePath) {
-    	
-    	
+    public void deleteContentOfFile(String filePath) throws IOException {
+    	BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+    	writer.write("");
+    	writer.close();
     }
 }
