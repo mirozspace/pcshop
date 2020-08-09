@@ -132,7 +132,7 @@ public class UserController {
         if (!"anonymousUser".equals(this.tools.getLoggedUser())) {
             this.userService.removeOneProductCart(productId, this.tools.getLoggedUser());
         }
-        return CART_VIEW;
+        return "redirect:/user/cart";
     }
 
     @PageTitle(name = "Profile Update")

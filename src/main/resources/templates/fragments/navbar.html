@@ -1,101 +1,120 @@
 <th:block th:fragment="head" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <a class="navbar-brand" th:href="@{/home}">Online Computer Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+		<a class="navbar-brand" th:href="@{/home}">Online Computer Shop</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
 
-                <li class="nav-item active"><a class="nav-link" th:href="@{/home}">HOME <span
-                            class="sr-only">(current)</span></a>
-                </li>
-
-
-                <th:block sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')">
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> PROFILE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" th:href="@{/user/profile}">Profile view</a>
-                            <a class="dropdown-item" th:href="@{/user/profile/update}">Profile update</a>
-                            <!-- <a class="dropdown-item" th:href="@{/user/profile/change-password}">Change password</a> -->
-                        </div>
-                    </li>
-                </th:block>
+				<li class="nav-item active"><a class="nav-link"
+					th:href="@{/home}">HOME <span class="sr-only">(current)</span></a>
+				</li>
 
 
-                <th:block>
-                    <!--                     sec:authorize="isAuthenticated()"-->
-                    <!--                </th:block>-->
-                    <!--                <th:block sec:authorize="hasRole('ADMIN')">-->
-
-                    <li sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> MANAGEMENT </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="dropdown-item"
-                                th:href="@{/order/all}">Orders</a>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="dropdown-item"
-                                th:href="@{/order/detail}">Order detail</a>
-                            <div class="dropdown-divider"></div>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="dropdown-item"
-                                th:href="@{/category/add}">Category add</a>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="dropdown-item"
-                                th:href="@{/category/update}">Category update</a>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="dropdown-item"
-                                th:href="@{/category/all}">Category all</a>
-                            <div class="dropdown-divider"></div>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="dropdown-item"
-                                th:href="@{/product/add}">Product Add</a>
-                            <div class="dropdown-divider"></div>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="dropdown-item"
-                                th:href="@{/manufacturer/add}">Manufacturer add</a>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="dropdown-item"
-                                th:href="@{/manufacturer/update}">Manufacturer update</a>
-                            <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="dropdown-item"
-                                th:href="@{/manufacturer/all}">Manufactures all</a>
-                        </div>
-                    </li>
-
-                    <li sec:authorize="hasAnyAuthority('ADMIN')" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> ADMINISTRATION </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                            <a class="dropdown-item" th:href="@{/admin/user/all}">Edit user roles</a>
-                            <!-- <a class="dropdown-item" href="#">All users (edit)</a> -->
-                            <a class="dropdown-item" th:href="@{/admin/product/add-default}">Add default products</a>
-                            <a class="dropdown-item" th:href="@{/product/delete/all}"
-                                style="color: white; background-color: #bd2130">Delete all products!</a>
-                        </div>
-                    </li>
-                    <li sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')" class="nav-item"><a
-                            class="nav-link" th:href="@{/user/cart}">CART</a>
-                    </li>
-                </th:block>
+				<th:block
+					sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> PROFILE </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/user/profile}">Profile
+								view</a> <a class="dropdown-item" th:href="@{/user/profile/update}">Profile
+								update</a>
+							<!-- <a class="dropdown-item" th:href="@{/user/profile/change-password}">Change password</a> -->
+						</div></li>
+				</th:block>
 
 
-                <th:block sec:authorize="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/user/login}">LOGIN</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/user/register}">REGISTER</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/psg}">Passwor Generator</a></li>
-                </th:block>
-                <th:block sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/logout}">LOGOUT</a>
-                    </li>
-                </th:block>
-            </ul>
-            <!--<form class="form-inline my-2 my-lg-0">
+				<th:block>
+					<!--                     sec:authorize="isAuthenticated()"-->
+					<!--                </th:block>-->
+					<!--                <th:block sec:authorize="hasRole('ADMIN')">-->
+
+					<li sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')"
+						class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> MANAGEMENT </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')"
+								class="dropdown-item" th:href="@{/order/all}">Orders</a> <a
+								sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')"
+								class="dropdown-item" th:href="@{/order/detail}">Order
+								detail</a>
+							<div class="dropdown-divider"></div>
+							<a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+								class="dropdown-item" th:href="@{/category/add}">Category
+								add</a> <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+								class="dropdown-item" th:href="@{/category/update}">Category
+								update</a>
+							<!-- <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="dropdown-item"
+                                th:href="@{/category/all}">Category all</a> -->
+							<div class="dropdown-divider"></div>
+							<a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+								class="dropdown-item" th:href="@{/product/add}">Product Add</a>
+							<div class="dropdown-divider"></div>
+							<a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+								class="dropdown-item" th:href="@{/manufacturer/add}">Manufacturer
+								add</a> <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+								class="dropdown-item" th:href="@{/manufacturer/update}">Manufacturer
+								update</a>
+							<!-- <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER')" class="dropdown-item"
+                                th:href="@{/manufacturer/all}">Manufactures all</a> -->
+						</div></li>
+
+					<li sec:authorize="hasAnyAuthority('ADMIN')"
+						class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> ADMINISTRATION </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+							<a class="dropdown-item" th:href="@{/admin/user/all}">Edit
+								user roles</a>
+							<!-- <a class="dropdown-item" href="#">All users (edit)</a> -->
+							<a class="dropdown-item" th:href="@{/admin/product/add-default}">Add
+								default products</a> <a class="dropdown-item"
+								th:href="@{/product/delete/all}"
+								style="color: white; background-color: #bd2130">Delete all
+								products!</a>
+						</div></li>
+					<li
+						sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')"
+						class="nav-item"><a class="nav-link" th:href="@{/user/cart}">CART</a>
+					</li>
+				</th:block>
+				<th:block sec:authorize="isAnonymous()">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/login}">LOGIN</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/register}">REGISTER</a></li>
+				</th:block>
+				<th:block sec:authorize="isAnonymous()">
+					<li class="nav-item"><a class="nav-link" th:href="@{/psg}">Password
+							Generator</a></li>
+				</th:block>
+				<th:block
+					sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')">
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">LOGOUT</a>
+					</li>
+				</th:block>
+				<th:block sec:authorize="hasAnyAuthority('ADMIN','MANAGER','WORKER','USER')">
+					<li class="nav-item"><a class="nav-link" th:href="@{/psg}">Password
+							Generator</a></li>
+				</th:block>
+			</ul>
+			<!--<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>-->
-        </div>
-    </nav>
+		</div>
+	</nav>
 </th:block>

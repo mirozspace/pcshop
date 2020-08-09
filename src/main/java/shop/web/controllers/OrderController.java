@@ -51,7 +51,7 @@ public class OrderController {
     @GetMapping("/delete/{orderId}")
     public String orderDelete(@PathVariable("orderId") String orderId){
         this.orderService.deleteOrder(orderId);
-        return "order/order_all";
+        return "redirect:/order/all";
     }
 
 }
