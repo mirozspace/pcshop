@@ -60,17 +60,17 @@ public class ProductController {
 
     @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @PostMapping(POST_MAPPING_PRODUCT_ADD)
-    public String productAddConfirm(@Valid @ModelAttribute("pabm") ProductUpdateBindingModel pubm,
+    public String productAddConfirm(@Valid @ModelAttribute("pabm") ProductBindingModel pabm,
                                     BindingResult bindingResult,
                                     RedirectAttributes redirectAttributes,
                                     Model model) throws IOException {
     	System.out.println();
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.pabm", bindingResult);
-            redirectAttributes.addFlashAttribute("pubm", pubm);
+            redirectAttributes.addFlashAttribute("pabm", pabm);
             return REDIRECT_TO_PRODUCT_ADD;
         }
-        this.productService.addProduct(this.modelMapper.map(pubm, ProductServiceModel.class));
+        this.productService.addProduct(this.modelMapper.map(pabm, ProductServiceModel.class));
         return REDIRECT_TO_HOME;
     }
 
@@ -80,7 +80,7 @@ public class ProductController {
     @GetMapping("/update/{productId}")
     public String productUpdate(@PathVariable("productId") String productId, Model model) {
         if (!model.containsAttribute("pbmupdate")) {
-            model.addAttribute("pbmupdate", new ProductBindingModel());
+            model.addAttribute("pbmupdate", new ProductUpdateBindingModel());
         }
         ProductServiceModel psm = this.productService.findByProductId(productId);
         ProductViewModel pvmupdate = this.modelMapper.map(psm, ProductViewModel.class);
@@ -94,7 +94,7 @@ public class ProductController {
 
     @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
     @PostMapping("/update")
-    public String productUpdate(@ModelAttribute("pbmupdate") ProductBindingModel pbmupdate,
+    public String productUpdate(@ModelAttribute("pbmupdate") ProductUpdateBindingModel pbmupdate,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes) throws IOException {
         System.out.println();

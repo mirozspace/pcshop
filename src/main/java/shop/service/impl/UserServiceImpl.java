@@ -158,7 +158,7 @@ public class UserServiceImpl implements UserService {
 	public boolean removeOneProductCart(String productId, String loggedUser) {
 		User userFromDb = this.userRepository.findByUsername(loggedUser).orElse(null);
 		if (userFromDb == null) {
-			throw new UserIsNotExistException("Pser with name " + loggedUser + " is not exist!");
+			throw new UserIsNotExistException("User with name " + loggedUser + " is not exist!");
 		}
 		Product product = this.productRepository.findById(productId).orElse(null);
 		if (product == null) {
