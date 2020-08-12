@@ -25,9 +25,5 @@ public class Tools {
     @Async("threadPoolTaskExecutor")
     public void asyncMethodWithConfiguredExecutor() {
     	System.out.println("System is startet!");
-		/*
-		 * System.out.println("Execute method with configured executor - " +
-		 * Thread.currentThread().getName());
-		 */
     }
 }

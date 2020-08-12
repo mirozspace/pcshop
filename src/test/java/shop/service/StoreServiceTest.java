@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.boot.test.mock.mockito.MockBean;
 
+import shop.error.store.StoreAlreadyExistException;
 //import shop.error.store.StoreAlreadyExistException;
 import shop.models.entities.Address;
 import shop.models.entities.Store;
@@ -45,22 +46,28 @@ class StoreServiceTest {
 	}
 
 	/*
-	 * @Test public void addStore_whenStoreExist_returnStore() {
-	 * Mockito.when(this.mockedStoreRepository.findByName(storeServiceModel.getName()))
-	 * .thenReturn(Optional.of(returnedStore));
-	 * Assertions.assertThrows(StoreAlreadyExistException.class, () -> {
-	 * this.storeServiceImpl.addStore(storeServiceModel); }); }
-	 */
-
 	@Test
-	public void addStore_whenStoreIsNotExist() {
-		Mockito.when(this.mockedStoreRepository.findByName(storeServiceModel.getName())).thenReturn(null)
-				.thenReturn(Optional.ofNullable(this.returnedStore));
-		StoreServiceModel actual = this.storeServiceImpl.addStore(storeServiceModel);
-		Store expected = this.returnedStore;
-		Assertions.assertEquals(expected.getName(), actual.getName());
-
+	public void addStore_whenStoreExist_returnStore() {
+		Mockito.when(this.mockedStoreRepository.findByName(Mockito.anyString()))
+				.thenReturn(Optional.of(returnedStore));
+		Assertions.assertThrows(StoreAlreadyExistException.class, () -> {
+			this.storeServiceImpl.addStore(storeServiceModel);
+		});
 	}
+	*/
+
+	/*
+	 * @Test public void addStore_whenStoreIsNotExist() {
+	 * Mockito.when(this.mockedStoreRepository.findByName(Mockito.anyString())).
+	 * thenReturn(null);
+	 * Mockito.when(Mockito.anyString()).thenReturn(Optional.of(this.returnedStore))
+	 * ; StoreServiceModel actual =
+	 * this.storeServiceImpl.addStore(storeServiceModel); Store expected =
+	 * this.returnedStore; Assertions.assertEquals(expected.getName(),
+	 * actual.getName());
+	 * 
+	 * }
+	 */
 
 	@AfterEach
 	public void destroy() {

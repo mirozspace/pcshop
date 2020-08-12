@@ -24,9 +24,8 @@ public class Schedule {
 	}
 	
 	@Async
-	@Scheduled(fixedDelay = 120000, initialDelay = 1800000) //every 30 minutes after start 
-	public void showDateAndTime() throws IOException {
-		
+	@Scheduled(fixedDelay = 60000, initialDelay = 30000)
+	public void showDateAndTime() throws IOException {	
 		this.fileTools.deleteContentOfFile(FilePaths.FILE_LOG_PATH);
 		System.out.println(ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
 		System.out.println("Log is deleted");

@@ -42,17 +42,6 @@ public class ProductControllerRest {
 		ProductViewModel randomProduct = list.get(index);
 		return new ResponseEntity<ProductViewModel>(randomProduct, HttpStatus.OK);
 	}
-	
-	/*
-	 * @GetMapping(path = "/hello", produces=MediaType.APPLICATION_JSON_VALUE)
-	 * public ResponseEntity<Object> sayHello() { //Get data from service layer into
-	 * entityList.
-	 * 
-	 * List<JSONObject> entities = new ArrayList<JSONObject>(); for (Entity n :
-	 * entityList) { JSONObject entity = new JSONObject(); entity.put("aa", "bb");
-	 * entities.add(entity); } return new ResponseEntity<Object>(entities,
-	 * HttpStatus.OK); }
-	 */
 
 }
 
