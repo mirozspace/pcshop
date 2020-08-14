@@ -32,7 +32,8 @@ public class StoreServiceImpl implements StoreService {
             throw new StoreAlreadyExistException(ssm.getName());
         }
         Store storeToDb = this.modelMapper.map(ssm, Store.class);
-        return this.modelMapper.map(this.storeRepository.saveAndFlush(storeToDb), StoreServiceModel.class);
+        Store returnedStore = this.storeRepository.saveAndFlush(storeToDb);
+        return this.modelMapper.map(returnedStore, StoreServiceModel.class);
     }
 
     @Override

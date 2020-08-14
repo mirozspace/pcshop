@@ -1,134 +1,103 @@
 package shop.service;
 
-//import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-
 import java.util.Optional;
 
-//import org.mockito.ArgumentMatchers.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.mockito.InjectMocks;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
 
 import shop.error.store.StoreAlreadyExistException;
-//import shop.error.store.StoreAlreadyExistException;
 import shop.models.entities.Address;
 import shop.models.entities.Store;
 import shop.models.service.StoreServiceModel;
 import shop.repository.StoreRepository;
 import shop.service.impl.StoreServiceImpl;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-
 @SpringBootTest
-class StoreServiceTest {
+public class StoreServiceTest {
 
-	private StoreRepository mockedStoreRepository;
-	private ModelMapper modelMapper;
-	private Store returnedStore;
-	private StoreServiceImpl storeServiceImpl;
+	@Mock
+	StoreRepository mockedStoreRepository;
+	@InjectMocks
+	StoreServiceImpl storeServiceImpl;
+	@Autowired
+	ModelMapper mapper;
+
 	private StoreServiceModel storeServiceModel;
+	private Store returnedStore;
+	private Address address;
 
 	@BeforeEach
 	public void setup() {
+		this.mockedStoreRepository = Mockito.mock(StoreRepository.class);
+		this.address = this.getAddress();
+		this.storeServiceImpl = new StoreServiceImpl(this.mockedStoreRepository, this.mapper);
 		this.returnedStore = this.getReturnedStore();
 		this.storeServiceModel = this.getStoreServiceModel();
-		this.mockedStoreRepository = mock(StoreRepository.class);
-		this.modelMapper = new ModelMapper();
-		this.storeServiceImpl = mock(StoreServiceImpl.class);
-		this.storeServiceImpl = new StoreServiceImpl(mockedStoreRepository, modelMapper);
+
 	}
 
-	/*
 	@Test
 	public void addStore_whenStoreExist_returnStore() {
-		Mockito.when(this.mockedStoreRepository.findByName(Mockito.anyString()))
-				.thenReturn(Optional.of(returnedStore));
+		Mockito.when(this.mockedStoreRepository.findByName(Mockito.anyString())).
+			thenReturn(Optional.of(returnedStore));
 		Assertions.assertThrows(StoreAlreadyExistException.class, () -> {
-			this.storeServiceImpl.addStore(storeServiceModel);
-		});
-	}
-	*/
-
-	/*
-	 * @Test public void addStore_whenStoreIsNotExist() {
-	 * Mockito.when(this.mockedStoreRepository.findByName(Mockito.anyString())).
-	 * thenReturn(null);
-	 * Mockito.when(Mockito.anyString()).thenReturn(Optional.of(this.returnedStore))
-	 * ; StoreServiceModel actual =
-	 * this.storeServiceImpl.addStore(storeServiceModel); Store expected =
-	 * this.returnedStore; Assertions.assertEquals(expected.getName(),
-	 * actual.getName());
-	 * 
-	 * }
-	 */
-
-	@AfterEach
-	public void destroy() {
-		this.returnedStore = null;
-		this.storeServiceModel = null;
-		this.mockedStoreRepository = null;
-		this.modelMapper = null;
-		this.storeServiceImpl = null;
+		    this.storeServiceImpl.addStore(storeServiceModel);
+		  });
 	}
 
-	private Store getReturnedStore() {
-		return new Store() {
-			{
-				setId("873425629x");
-				setName("PcShop");
-				setOwners("Me");
-				setAddress(new Address() {
-					{
-						setId("8783475a");
-						setCountry("Bulgaria");
-						setCity("Ruse");
-						setPostCode("1234");
-						setStreet("Pliska");
-						setStreetNumb("1A");
-					}
-				});
-				setEmail("desito@desito.com");
-				setPhone("+359000000000");
-			}
-		};
+	@Test
+	public void addStore_whenStoreIsNotExist() {
+
+		Mockito.when(this.mockedStoreRepository.findByName(Mockito.anyString())).thenReturn(Optional.empty());
+		Mockito.when(this.mockedStoreRepository.saveAndFlush(Mockito.any())).thenReturn(this.returnedStore);
+
+		Store storeFromDb = this.mockedStoreRepository.findByName(Mockito.anyString()).orElse(null);
+		if (storeFromDb != null) {
+			throw new StoreAlreadyExistException(this.getStoreServiceModel().getName());
+		}
+		Store storeToDb = this.mapper.map(this.getStoreServiceModel(), Store.class);
+		StoreServiceModel expected = this.mapper.map(storeToDb, StoreServiceModel.class);
+		StoreServiceModel actual = this.storeServiceImpl.addStore(this.storeServiceModel);
+		Assertions.assertEquals(expected.getName(), actual.getName());
 	}
 
-	private StoreServiceModel getStoreServiceModel() {
-		return new StoreServiceModel() {
-			{
-				setId("873425629x");
-				setName("PcShop");
-				setOwners("Me");
-				setAddress(new Address() {
-					{
-						setId("8783475a");
-						setCountry("Bulgaria");
-						setCity("Ruse");
-						setPostCode("1234");
-						setStreet("Pliska");
-						setStreetNumb("1A");
-					}
-				});
-				setEmail("desito@desito.com");
-				setPhone("+359000000000");
-			}
-		};
+	public Store getReturnedStore() {
+		Store store = new Store();
+		store.setId("873425629x");
+		store.setName("PcShop");
+		store.setOwners("Me");
+		store.setAddress(this.address);
+		store.setEmail("desito@desito.com");
+		store.setPhone("+359000000000");
+		return store;
 	}
 
-	/*
-	 * @Override public StoreServiceModel addStore(StoreServiceModel ssm) { Store
-	 * storeFromDb = this.storeRepository.findByName(ssm.getName()).orElse(null); if
-	 * (storeFromDb != null){ throw new StoreAlreadyExistException(ssm.getName()); }
-	 * Store storeToDb = this.modelMapper.map(ssm, Store.class); return
-	 * this.modelMapper.map(this.storeRepository.saveAndFlush(storeToDb),
-	 * StoreServiceModel.class); }
-	 */
+	public StoreServiceModel getStoreServiceModel() {
+		StoreServiceModel storeServiceModel = new StoreServiceModel();
+		storeServiceModel.setId("873425629x");
+		storeServiceModel.setName("PcShop");
+		storeServiceModel.setOwners("Me");
+		storeServiceModel.setAddress(this.address);
+		storeServiceModel.setEmail("desito@desito.com");
+		storeServiceModel.setPhone("+359000000000");
+		return storeServiceModel;
+	}
 
+	private Address getAddress() {
+		Address address = new Address();
+		address.setId("84834sfjg");
+		address.setCountry("Bulgaria");
+		address.setCity("Ruse");
+		address.setPostCode("7000");
+		address.setStreet("Pliska");
+		address.setStreetNumb("10");
+		return address;
+	}
 }
