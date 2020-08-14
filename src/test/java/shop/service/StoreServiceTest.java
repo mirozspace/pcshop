@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import org.springframework.boot.test.mock.mockito.MockBean;
 import shop.error.store.StoreAlreadyExistException;
 import shop.models.entities.Address;
 import shop.models.entities.Store;
@@ -22,7 +23,7 @@ import shop.service.impl.StoreServiceImpl;
 @SpringBootTest
 public class StoreServiceTest {
 
-	@Mock
+	@MockBean
 	StoreRepository mockedStoreRepository;
 	@InjectMocks
 	StoreServiceImpl storeServiceImpl;
@@ -35,7 +36,7 @@ public class StoreServiceTest {
 
 	@BeforeEach
 	public void setup() {
-		this.mockedStoreRepository = Mockito.mock(StoreRepository.class);
+		//this.mockedStoreRepository = Mockito.mock(StoreRepository.class);
 		this.address = this.getAddress();
 		this.storeServiceImpl = new StoreServiceImpl(this.mockedStoreRepository, this.mapper);
 		this.returnedStore = this.getReturnedStore();
@@ -67,6 +68,26 @@ public class StoreServiceTest {
 		StoreServiceModel actual = this.storeServiceImpl.addStore(this.storeServiceModel);
 		Assertions.assertEquals(expected.getName(), actual.getName());
 	}
+
+	/*
+	@Override
+    public boolean deleteStore(String storeId) {
+        Store store = this.storeRepository.findById(storeId).orElse(null);
+        if (store == null){
+            throw new StoreIsNotExistException("Store is not exist");
+        }
+        this.storeRepository.deleteById(storeId);
+        return true;
+    }
+
+    @Override
+    public List<StoreServiceModel> getAllStores() {
+        return this.storeRepository.findAll()
+                .stream().map(st -> this.modelMapper.map(st, StoreServiceModel.class))
+                .collect(Collectors.toList());
+    }
+	 */
+
 
 	public Store getReturnedStore() {
 		Store store = new Store();
