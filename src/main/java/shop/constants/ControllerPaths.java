@@ -3,7 +3,7 @@ package shop.constants;
 public abstract class ControllerPaths {
 
     /* HOME CONTROLLER */
-    public static final String GET_MAPPING_INDEX = "";
+    public static final String GET_MAPPING_INDEX = "/";
     public static final String GET_MAPPING_HOME = "/home";
 
     /* USER CONTROLLER */

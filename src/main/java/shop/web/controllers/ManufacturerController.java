@@ -57,7 +57,7 @@ public class ManufacturerController {
                                       BindingResult bindingResult,
                                       RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.mabm", mabm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.mabm", bindingResult);
             redirectAttributes.addFlashAttribute("mabm", mabm);
             return REDIRECT_TO_MANUFACTURER_ADD;
         }

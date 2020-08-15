@@ -25,6 +25,7 @@
                     </div>
                 </div>
                 <form th:action="@{/user/login}" th:method="post">
+                
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" name="username" id="" aria-describedby="helpId"
@@ -35,6 +36,13 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" name="password" id="" placeholder="">
                     </div>
+                    
+                    <th:block th:if="${param.error}">
+                          <div class="text-center" style="font-weight: bold; color: red; text-align: center;">   
+                            <small class="col-md-12">Incorect username or Password!</small>
+                         </div>
+                    </th:block>
+                    
                     <button type="submit" class="bbs-1">Login</button>
                 </form>
             </div>

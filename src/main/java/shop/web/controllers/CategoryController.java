@@ -70,6 +70,9 @@ public class CategoryController {
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
+    	
+    	System.out.println();
+    	
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.cabm", bindingResult);
             redirectAttributes.addFlashAttribute("cabm", cabm);

@@ -24,26 +24,26 @@
 						<hr>
 					</div>
 				</div>
-				<form th:action="@{/category/add}" th:method="post">
+				<form th:action="@{/category/add}" th:method="post" th:object="${cabm}">
 					<div class="form-group">
-						<label for="name">Category Name</label> <input type="text" class="form-control" name="name"
+						<label for="name">Category Name</label>
+						<input type="text" class="form-control" name="name"
 							id="" aria-describedby="helpId" placeholder="">
-
-						<!-- <small id="helpId"
-							class="form-text text-muted span-info-text">Category can
-							contains only text and numbers (8-20 symbols).</small> <small
-							class="span-info-text-error"
-							th:each="error : ${#fields.hasErrors('name')}" th:text="${error}"></small> -->
+							
+							<small class="span-info-text-error" th:each="error : ${#fields.errors('name')}" 
+									th:text="${error}">
+							</small>
+						
 					</div>
 
 					<div class="form-group">
 						<label for="description">Category Description</label>
 						<textarea class="form-control" name="description" id="" rows="3"></textarea>
-						<!-- <small id="helpId"
-							class="form-text text-muted span-info-text">Category description can
-							contains only text and numbers (5-250 symbols).</small> <small
-							class="span-info-text-error"
-							th:each="error : ${#fields.errors('description')}" th:text="${error}"></small> -->
+						
+						<small class="span-info-text-error" th:each="error : ${#fields.errors('description')}" 
+									th:text="${error}">
+							</small>
+							
 					</div>
 					<button type="submit" class="bbs-1">Category Add</button>
 				</form>

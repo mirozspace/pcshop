@@ -61,11 +61,11 @@ public abstract class Regex {
     /* CATEGORY NAME **************************************************************************************** */
     public static final String CATEGORY_NAME_REGEX = TEXT_REGEX;
     public static final String CATEGORY_NAME_REGEX_ERROR_MSG = "Category name can contains only letters, digits and white spaces!";
-    public static final String CATEGORY_NAME_MIN_MAX_ERROR_MSG = "Manufacturer is not correct (2-15).";
+    public static final String CATEGORY_NAME_MIN_MAX_ERROR_MSG = "Category name is not correct (2-15).";
     /* CATEGORY DESCRIPTION **************************************************************************************** */
     public static final String CATEGORY_DESCRIPTION_REGEX = TEXT_REGEX;
     public static final String CATEGORY_DESCRIPTION_REGEX_ERROR_MSG = "Category name can contains only letters, digits and white spaces!";
-    public static final String CATEGORY_DESCRIPTION_MIN_MAX_ERROR_MSG = "Manufacturer length is not correct (5-250).";
+    public static final String CATEGORY_DESCRIPTION_MIN_MAX_ERROR_MSG = "Category description length is not correct (5-250).";
     /*PRODUCT NAME **************************************************************************************** */
     public static final String PRODUCT_NAME_REGEX = TEXT_REGEX;
     public static final String PRODUCT_NAME_REGEX_ERROR_MSG =
