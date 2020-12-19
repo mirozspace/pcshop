@@ -13,20 +13,17 @@ public class AppWebMvcConfig implements WebMvcConfigurer {
 
     private final PageTitleInterceptor pageTitleInterceptor;
     private final RequestInterceptor requestInterceptor;
-    //private final FaviconInterceptor faviconInterceptor;
 
     @Autowired
     public AppWebMvcConfig(PageTitleInterceptor pageTitleInterceptor,
-                           RequestInterceptor requestInterceptor/*, FaviconInterceptor faviconInterceptor*/) {
+                           RequestInterceptor requestInterceptor) {
         this.pageTitleInterceptor = pageTitleInterceptor;
         this.requestInterceptor = requestInterceptor;
-        //this.faviconInterceptor = faviconInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(pageTitleInterceptor);
         registry.addInterceptor(requestInterceptor);
-        //registry.addInterceptor(faviconInterceptor);
     }
 }

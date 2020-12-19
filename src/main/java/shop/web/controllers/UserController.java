@@ -177,8 +177,6 @@ public class UserController {
         this.orderService.saveOrders();
         return REDIRECT_TO_HOME;
     }
-    
-    
 
     @ExceptionHandler({AddressIsNotExistException.class, UserWithUsernameAlreadyExistException.class,
             UsernameNotFoundException.class, UserRegistrationException.class,
@@ -216,6 +214,9 @@ public class UserController {
      * principal).getUsername(); } else { username = principal.toString(); } return
      * username; }
      */
+
+
+
 }
 
 

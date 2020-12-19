@@ -126,9 +126,3 @@ public abstract class ControllerPaths {
     public static final String STORE_VIEW = "store";
 
 }
-
-
-
-
-/*@Value("${getMappingHome}")
-    public static String GET_MAPPING_HOME;*/

@@ -3,7 +3,6 @@
 <th:block th:include="~{/fragments/head}"></th:block>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -11,8 +10,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="container m-4">
         <div class="row">
             <div class="col-md-3">
@@ -25,10 +22,7 @@
                         <hr>
                     </div>
                 </div>
-
                 <form th:action="@{/user/register}" th:method="post" th:object="${urbm}">
-
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -51,12 +45,11 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" class="form-control" name="password" id=""
+                            <input type="password" class="form-control" name="password" id="passwordf"
                                    aria-describedby="helpId" placeholder="Password">
                             <small id="helpId" class="form-text text-muted span-info-text">Minimum eight characters, 
                             at least one uppercase letter, one lowercase letter, one number and one special character.</small>
@@ -73,7 +66,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -97,13 +89,11 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- <div class="row">
                     <div class="col-md-12">
                         <h4>Address and Phone number</h4>
                     </div>
                 </div> -->
-
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
@@ -138,7 +128,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -172,7 +161,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row text-center">
                     <div class="col-md-12">
                         <button type="submit" class="bbs-1">Register</button>
@@ -182,8 +170,6 @@
         </div>
     </div>
 </div>
-
 <th:block th:include="~{/fragments/footer}"></th:block>
 </body>
-
 </html>
