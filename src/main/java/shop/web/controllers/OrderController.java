@@ -1,6 +1,5 @@
 package shop.web.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +19,10 @@ import java.util.List;
 public class OrderController {
 
 	private final OrderService orderService;
-    @SuppressWarnings("unused")
-	private final ModelMapper modelMapper;
     private final ListShop listShop;
 
-    public OrderController(OrderService orderService, ModelMapper modelMapper, ListShop listShop) {
+    public OrderController(OrderService orderService, ListShop listShop) {
         this.orderService = orderService;
-        this.modelMapper = modelMapper;
         this.listShop = listShop;
     }
 

@@ -27,12 +27,6 @@ public enum DefaultProductInformation {
 	COMPUTER_DELL_TOWER_745("Dell Tower 745", "Best Computer for office", "Dell", "Tower 745", "00007", "---", new BigDecimal("59"),
 			9, ProductCondition.USED, "Computer", "Dell Company", "http://stefchev.com/files/osc/product.png");
 	
-	/*
-	 * COMPUTER_MOUSE_HP_Z3700("Dell Tower 745", "Best Computer for office", "Dell",
-	 * "Tower 745", "00007", "---", new BigDecimal("59"), 9, ProductCondition.USED,
-	 * "Computer", "Dell Company", "http://stefchev.com/files/osc/product.png");
-	 */
-	
 	private String name;
 	private String description;
 	private String make;
@@ -161,18 +155,3 @@ public enum DefaultProductInformation {
 	}
 	
 }
-
-
-
-
-/*
-	
-    
-    MANUFACTURER_UNKNOWN("Unknown Company"),
-    MANUFACTURER_ACER("Acer Company"),
-    MANUFACTURER_ASUS("Asus Company"),
-    MANUFACTURER_LENOVO("Lenovo Company"),
-    MANUFACTURER_HP("HP Company"),
-    MANUFACTURER_DELL("Dell Company");
-    
-*/

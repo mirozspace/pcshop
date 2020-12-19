@@ -5,7 +5,7 @@ public enum DefaultCategoryInformation {
     CATEGORY_UNKNOWN("Unknown", "Unknown Category"),
     CATEGORY_LAPTOP("LAPTOP", "Laptop"),
     CATEGORY_COMPUTER("COMPUTER", "Computer"),
-    CATEGORY_COMPUTER_PARTRS("COMPUTER PARTS", "Computer parts"),
+    CATEGORY_COMPUTER_PARTS("COMPUTER PARTS", "Computer parts"),
     CATEGORY_COMPUTER_ACCESSORIES("COMPUTER ACCESSORIES", "Computer accessories");
     
     private String name;

@@ -69,12 +69,7 @@ public class NewPasswordServiceImpl implements NewPasswordService {
             return null;
         }
     }
-    /**
-     * Created password from user choice without user password length!
-     *
-     * @param model
-     * @return List<Character>
-     */
+
     private List<Character> createPasswordWithoutLength(NewPasswordServiceModel model) {
 
         if (model.getLowercase() == null && model.getUppercase() == null && model.getDigits() == null

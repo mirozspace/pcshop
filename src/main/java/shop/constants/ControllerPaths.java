@@ -123,6 +123,5 @@ public abstract class ControllerPaths {
 
     public static final String HOME_VIEW = "home";
     public static final String CART_VIEW = "cart";
-    public static final String STORE_VIEW = "store";
 
 }
