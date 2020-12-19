@@ -65,7 +65,6 @@ public class UserController {
         if (!model.containsAttribute("urbm")) {
             model.addAttribute("urbm", new UserRegisterBindingModel());
         }
-        //List<ProductViewModel> allProducts = this.listShop.getAllProducts();
         List<CategoryViewModel> allCategories = this.listShop.getAllCategories();
         model.addAttribute("allCategories", allCategories);
         return REGISTER_VIEW;
@@ -75,8 +74,6 @@ public class UserController {
     public String registerConfirm(@Valid @ModelAttribute("urbm") UserRegisterBindingModel urbm,
                                   BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
-            //urbm.setPassword("");
-            //urbm.setConfirmPassword("");
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.urbm", bindingResult);
             redirectAttributes.addFlashAttribute("urbm", urbm);
             return REDIRECT_TO_REGISTER;
@@ -108,7 +105,6 @@ public class UserController {
             this.userService.buyProduct(productId, this.tools.getLoggedUser());
             return REDIRECT_TO_USER_CART;
         } else {
-            //niakakva greshka...
             return REDIRECT_TO_HOME;
         }
     }
@@ -120,12 +116,10 @@ public class UserController {
             this.userService.removeAllProductCart(this.tools.getLoggedUser());
             return CART_VIEW;
         } else {
-            //niakakva greshka...
             return HOME_VIEW;
         }
     }
 
-    //http://localhost:8000/product/remove-from-cart/0b5e6d87-cc02-4fc7-aaa2-79e7630966f8
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @GetMapping(GET_MAPPING_PRODUCT_REMOVE_FROM_CART)
     public String removeFromCart(@PathVariable("productId") String productId) {
@@ -147,8 +141,7 @@ public class UserController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @PostMapping(POST_MAPPING_USER_PROFILE_UPDATE)
-    public String userUpdateProfileConfirm(@ModelAttribute("upu") UserProfileUpdateBindingModel upu,
-                                           Model model) {
+    public String userUpdateProfileConfirm(@ModelAttribute("upu") UserProfileUpdateBindingModel upu) {
         this.userService.updateProfile(this.modelMapper.map(upu, UserServiceModel.class));
         return REDIRECT_TO_USER_PROFILE_UPDATE;
     }
@@ -199,23 +192,6 @@ public class UserController {
         }
         return totalPrice;
     }
-    
-    
-/*@GetMapping(GET_MAPPING_USER_LOGOUT)
-    public String logout() {
-        //something
-        return HOME_VIEW;
-    }*/
-
-    /*
-     * private String getLoggedUser() { String username = null; Object principal =
-     * SecurityContextHolder.getContext().getAuthentication().getPrincipal(); if
-     * (principal instanceof UserDetails) { username = ((UserDetails)
-     * principal).getUsername(); } else { username = principal.toString(); } return
-     * username; }
-     */
-
-
 
 }
 

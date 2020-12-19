@@ -25,7 +25,6 @@ public class PSGenerator {
         this.modelMapper = modelMapper;
     }
 
-    //@GetMapping({"/", "home"})
     @GetMapping({"/psg"})
     public String psg(Model model) {
     	if (!model.containsAttribute("newPasswordViewModel")) {

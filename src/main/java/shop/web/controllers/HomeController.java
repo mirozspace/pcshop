@@ -21,16 +21,11 @@ import static shop.constants.ControllerPaths.*;
 @Controller
 public class HomeController {
 
-	/*
-	 * @Value("${serverPath}") private String serverPath;
-	 */
     private final ListShop listShop;
-    //private final Environment environment;
 
     @Autowired
     public HomeController(ListShop listShop, Environment environment) {
         this.listShop = listShop;
-        //this.environment = environment;
     }
 
     @GetMapping(GET_MAPPING_INDEX)
@@ -42,22 +37,9 @@ public class HomeController {
     public String home(Model model){
         List<ProductViewModel> allProducts = this.listShop.getAllProducts();
         List<CategoryViewModel> allCategories = this.listShop.getAllCategories();
-        //model.addAttribute("serverPath", this.serverPath);
         model.addAttribute("allProducts", allProducts);
         model.addAttribute("allCategories", allCategories);
         return HOME_VIEW;
     }
-    
-    @ResponseBody
-	@RequestMapping(value = "/home2" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getAllProductsJ(Model model) {
-		List<ProductViewModel> list = this.listShop.getAllProducts();
-		return new ResponseEntity<List<ProductViewModel>>(list, HttpStatus.OK);
-	}
 
 }
-
-/*
-* @Value("${userBucket.path}")
-private String userBucketPath;
-* */

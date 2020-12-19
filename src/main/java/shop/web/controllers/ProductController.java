@@ -97,7 +97,6 @@ public class ProductController {
     public String productUpdate(@ModelAttribute("pbmupdate") ProductUpdateBindingModel pbmupdate,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes) throws IOException {
-        System.out.println();
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.pbmupdate", pbmupdate);
             redirectAttributes.addFlashAttribute("pbmupdate", pbmupdate);
@@ -116,20 +115,6 @@ public class ProductController {
         modelAndView.setViewName("error");
         return modelAndView;
     }
-
-
-    /*@PageTitle(name = "Product Edit")
-    @PreAuthorize("hasAnyAuthority('MANAGER','ADMIN')")
-    @GetMapping("/update/{productId}")
-    public String productUpdateById(@PathVariable("productId") String productId, Model model) {
-        return "product/product-update";
-    }*/
-
-
-
-
-
-
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @RequestMapping(path = REQUEST_MAPPING_PRODUCT_DELETE)

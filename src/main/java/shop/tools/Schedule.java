@@ -16,7 +16,7 @@ import shop.constants.FilePaths;
 @Component
 public class Schedule {
 	
-	private FileTools fileTools;
+	private final FileTools fileTools;
 	
 	@Autowired
 	public Schedule(FileTools fileTools) {
