@@ -14,7 +14,6 @@ public class UserServiceModel extends BaseServiceModel{
     private String phoneNumber;
     private List<ProductServiceModel> buyedProducts;
 
-    /* For Address */
     private String postCode;
     private String city;
     private String country;
@@ -90,8 +89,6 @@ public class UserServiceModel extends BaseServiceModel{
     public void setAuthorities(Set<URoleServiceModel> authorities) {
         this.authorities = authorities;
     }
-
-    /* For Address */
 
     public String getPostCode() {
         return postCode;

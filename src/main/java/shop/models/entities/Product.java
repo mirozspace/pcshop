@@ -15,13 +15,12 @@ public class Product extends BaseEntity {
     private String description;
     private String make;
     private String model;
-    private String sku; /*Stock keeping unit*/
-    private String ean; /*European article number*/
+    private String sku;
+    private String ean;
     private BigDecimal price;
     private int quantity;
     private ProductCondition productCondition;
     private List<String> imageUrls;
-    //private String condition;
     private Category category;
     private Manufacturer manufacturer;
 
@@ -158,16 +157,4 @@ public class Product extends BaseEntity {
         this.imageUrls = imageUrls;
     }
 
-    /*@Column(name = "condition")
-	public String getCondition() {
-		return condition;
-	}
-
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}*/
-
-
-	
-    
 }

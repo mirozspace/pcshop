@@ -19,7 +19,6 @@ public class User extends BaseEntity implements UserDetails {
     private String firstName;
     private String lastName;
     private Address address;
-    //private boolean newsLetter;
     private String phoneNumber;
     private LocalDateTime createdDate = LocalDateTime.now();
     private List<Product> boughtProducts;
@@ -148,6 +147,4 @@ public class User extends BaseEntity implements UserDetails {
         this.phoneNumber = phoneNumber;
     }
 
-
-    
 }
