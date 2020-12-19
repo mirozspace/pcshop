@@ -88,5 +88,4 @@ public class ManufacturerServiceImpl implements ManufacturerService {
         return this.modelMapper.map(this.manufacturerRepository.saveAndFlush(m), ManufacturerServiceModel.class);
     }
 
-
 }

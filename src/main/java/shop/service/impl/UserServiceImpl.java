@@ -193,7 +193,17 @@ public class UserServiceImpl implements UserService {
 		return this.modelMapper.map(user, UserServiceModel.class);
 	}
 
-	/* PRIVATE METHODS */
+	@Override
+	public boolean deleteUserById(String userId) {
+		User userForDelete = this.userRepository.findById(userId).orElse(null);
+		if (userForDelete == null) {
+			throw new UserIsNotExistException("User is not exist!");
+		}
+		userForDelete.getAuthorities().clear();
+		this.userRepository.deleteById(userId);
+		return true;
+	}
+
 	private void addAddressToUser(UserServiceModel userServiceModel, User user) {
 		AddressServiceModel addressServiceModel = new AddressServiceModel();
 		addressServiceModel.setCity(userServiceModel.getCity());
@@ -208,14 +218,4 @@ public class UserServiceImpl implements UserService {
 		return loggedUser != null && productForBuy != null;
 	}
 
-	@Override
-	public boolean deleteUserById(String userId) {
-		User userForDelete = this.userRepository.findById(userId).orElse(null);
-		if (userForDelete == null) {
-			throw new UserIsNotExistException("User is not exist!");
-		}
-		userForDelete.getAuthorities().clear();
-		this.userRepository.deleteById(userId);
-		return true;
-	}
 }

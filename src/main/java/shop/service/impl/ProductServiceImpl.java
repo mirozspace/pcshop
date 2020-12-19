@@ -204,13 +204,10 @@ public class ProductServiceImpl implements ProductService {
                 + File.separator + "products";
     }
 
-    @SuppressWarnings("unused")
 	private static String getMadeLink() {
         return "/src/main/resources/static/img/products//";
     }
 
-    /* PRIVATE METHODS */
-    @SuppressWarnings("unused")
 	private static String getBaseFilePathString3() {
         return "C:" + File.separator + "photos";
     }
