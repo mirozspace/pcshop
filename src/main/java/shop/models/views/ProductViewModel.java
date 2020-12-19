@@ -11,8 +11,8 @@ public class ProductViewModel extends BaseViewModel {
     private String description;
     private String make;
     private String model;
-    private String sku; /*Stock keeping unit*/
-    private String ean; /*European article number*/
+    private String sku;
+    private String ean;
     private BigDecimal price;
     private int quantity;
     private ProductCondition productCondition;
