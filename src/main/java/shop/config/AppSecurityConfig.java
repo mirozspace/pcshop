@@ -15,7 +15,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
             = {"/", "/home2", "/user/register", "/user/login", "/home", "/home-r",
                 "/about", "/faq", "/contact", "/delivery-information",
             "/privacy-policy", "/return-query", "/term-and-conditions", "/category/selected/**",
-                "/test", "/random/**", "/psg/**"};
+                "/test", "/random/**", "/psg/**", "/swagger-ui/"};
 
     private static final String[] ENABLE_RESOURCES
             = {"/static/**", "/css/**", "/js/**", "/img/**"};
