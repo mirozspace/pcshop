@@ -4,6 +4,10 @@ body {
 	background-position: center;
 	background-repeat: repeat;
 	/*background-size: cover;*/
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	height: 100vh;
 
 	background-color: #dae0e5;
 }
@@ -82,7 +86,9 @@ body {
 
 
 
-
+.container{
+	flex-grow: 1;
+}
 
 
 
