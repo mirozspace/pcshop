@@ -27,7 +27,7 @@
                 <form th:action="@{/manufacturer/add}" th:method="post" th:object="${mabm}">
                     <div class="form-group">
                         <label for="name">Manufacturer Name</label>
-                        <input type="text" class="form-control" name="name" id="" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
                             placeholder="">
                         <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
                         <small class="span-info-text-error" th:each="error : ${#fields.errors('name')}" 

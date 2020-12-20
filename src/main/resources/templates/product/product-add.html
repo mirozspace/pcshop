@@ -32,7 +32,7 @@
                                 <label>Name</label>
                                 <input th:value="*{name}" type="text" class="form-control" name="name"
                                     aria-describedby="helpId" placeholder="Product name">
-                                <small id="helpId" class="form-text text-muted">
+                                <small  class="form-text text-muted">
                                     Product name can contains only text and digits. From 2 to 20 symbols.
                                 </small>
                                 <small class="span-info-text-error" th:each="error : ${#fields.errors('name')}" th:text="${error}"></small>
@@ -46,7 +46,7 @@
                             <label>Make</label>
                             <input th:value="*{make}" type="text" class="form-control" name="make"  aria-describedby="helpId"
                                    placeholder="Product make">
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Product make can contains only text and digits. From 1 to 25 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('make')}" th:text="${error}"></small>
@@ -57,7 +57,7 @@
                             <label>Model</label>
                             <input th:value="*{model}" type="text" class="form-control" name="model"  aria-describedby="helpId"
                                    placeholder="Product model">
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Product model can contains only text and digits. From 1 to 25 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('model')}" th:text="${error}"></small>
@@ -71,7 +71,7 @@
                             <label>SKU</label>
                             <input th:value="*{sku}" type="text" class="form-control" name="sku"  aria-describedby="helpId"
                                    placeholder="SKU number">
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 SKU number can contains only text and digits. From 1 to 25 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('sku')}" th:text="${error}"></small>
@@ -82,7 +82,7 @@
                             <label>EAN</label>
                             <input th:value="*{ean}" type="text" class="form-control" name="ean"  aria-describedby="helpId"
                                    placeholder="EAN number">
-                            <!-- <small id="helpId" class="form-text text-muted">Help text</small> --><small id="helpId" class="form-text text-muted">
+                            <!-- <small  class="form-text text-muted">Help text</small> --><small  class="form-text text-muted">
                             EAN number can contains only text and digits. From 1 to 25 symbols.
                         </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('ean')}" th:text="${error}"></small>
@@ -93,7 +93,7 @@
                             <label>Price</label>
                             <input th:value="*{price}" type="text" class="form-control" name="price"  aria-describedby="helpId"
                                    placeholder="Price">
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Price can contains only digits. Value from 1 to 10000 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('price')}" th:text="${error}"></small>
@@ -104,7 +104,7 @@
                             <label>Quantity</label>
                             <input th:value="*{quantity}" type="text" class="form-control" name="quantity"  aria-describedby="helpId"
                                    placeholder="Quantity">
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Product can contains only digits. Value from 0 to 10 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('quantity')}" th:text="${error}"></small>
@@ -122,7 +122,7 @@
                                         th:value="${category.getName()}" th:text="${category.getName()}">
                                 </option>
                             </select>
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Category can contains only text and digits. From 2 to 15 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('categoryF')}" th:text="${error}"></small>
@@ -137,7 +137,7 @@
                                         th:value="${cond}" th:text="${cond.getName()}">
                                 </option>
                             </select>
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Product condition can contains only NEW or USED.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('productCondition')}" th:text="${error}"></small>
@@ -152,7 +152,7 @@
                                         th:value="${manufacturers.getName()}" th:text="${manufacturers.getName()}">
                                 </option>
                             </select>
-                            <small id="helpId" class="form-text text-muted">
+                            <small  class="form-text text-muted">
                                 Manufacturer can contains only text and digits. From 1 to 25 symbols.
                             </small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('manufacturerF')}"

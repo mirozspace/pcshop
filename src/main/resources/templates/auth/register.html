@@ -29,7 +29,7 @@
                                 <label>Username:</label>
                                 <input type="text" class="form-control" name="username" th:value="*{username}"
                                     aria-describedby="helpId" placeholder="Username">
-                                <small id="helpId" class="form-text text-muted span-info-text">Username can contains
+                                <small  class="form-text text-muted span-info-text">Username can contains
                                     only digist
                                     and numbers without white spaces (2 - 20 symbols).</small>
                                 <small class="span-info-text-error" th:each="error : ${#fields.errors('username')}" th:text="${error}"></small>
@@ -38,9 +38,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" name="email" id=""
+                            <input type="email" class="form-control" name="email" id="email"
                                    th:value="*{email}" aria-describedby="emailHelpId" placeholder="Email">
-                             <small id="helpId" class="form-text text-muted span-info-text">Email must be valid (6-35 symbols).</small>
+                             <small  class="form-text text-muted span-info-text">Email must be valid (6-35 symbols).</small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('email')}" th:text="${error}"></small>
                         </div>
                     </div>
@@ -49,18 +49,18 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" class="form-control" name="password" id="passwordf"
+                            <input type="password" class="form-control" name="password" id="password"
                                    aria-describedby="helpId" placeholder="Password">
-                            <small id="helpId" class="form-text text-muted span-info-text">Minimum eight characters, 
+                            <small  class="form-text text-muted span-info-text">Minimum eight characters, 
                             at least one uppercase letter, one lowercase letter, one number and one special character.</small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('password')}" th:text="${error}"></small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Repeat Password:</label>
-                            <input type="password" class="form-control" name="confirmPassword" id="" placeholder="Repeat Password">
-                            <small id="helpId" class="form-text text-muted span-info-text">Minimum eight characters, 
+                            <label for="confirmPassword">Repeat Password:</label>
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Repeat Password">
+                            <small class="form-text text-muted span-info-text">Minimum eight characters, 
                             at least one uppercase letter, one lowercase letter, one number and one special character.</small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}"></small>
                         </div>
@@ -70,9 +70,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="firstName">First Name:</label>
-                            <input type="text" class="form-control" name="firstName" id=""
+                            <input type="text" class="form-control" name="firstName" id="firstName"
                                    th:value="*{firstName}" aria-describedby="helpId" placeholder="First name">
-                            <small id="helpId" class="form-text text-muted span-info-text">First name can contains 
+                            <small  class="form-text text-muted span-info-text">First name can contains 
                             only letters (2-35 symbols).</small>
                             <small class="span-info-text-error" th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></small>
                         </div>
@@ -80,9 +80,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="lastName">Last Name:</label>
-                            <input type="text" class="form-control" name="lastName" id=""
+                            <input type="text" class="form-control" name="lastName"  id="lastName"
                                    th:value="*{lastName}" aria-describedby="helpId" placeholder="Last Name">
-                            <small id="helpId" class="form-text text-muted span-info-text">Last name can contains 
+                            <small  class="form-text text-muted span-info-text">Last name can contains 
                             only letters (2-35 symbols).</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></small>
@@ -98,9 +98,9 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label for="country">Country:</label>
-                            <input type="text" class="form-control" name="country" id=""
+                            <input type="text" class="form-control" name="country" id="country"
                                    th:value="*{country}" aria-describedby="helpId" placeholder="Country">
-                            <small id="helpId" class="form-text text-muted span-info-text">Country can contains 
+                            <small  class="form-text text-muted span-info-text">Country can contains 
                             only letters (2-35 symbols).</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('country')}" th:text="${error}"></small>
@@ -109,9 +109,9 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label for="city">City:</label>
-                            <input type="text" class="form-control" name="city" id=""
+                            <input type="text" class="form-control" name="city" id="city"
                                    th:value="*{city}" aria-describedby="helpId" placeholder="City">
-                            <small id="helpId" class="form-text text-muted span-info-text">City can contains 
+                            <small  class="form-text text-muted span-info-text">City can contains
                             only letters (2-35 symbols).</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('city')}" th:text="${error}"></small>
@@ -120,9 +120,9 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="postCode">Post code:</label>
-                            <input type="text" class="form-control" name="postCode"
-                                   th:value="*{postCode}" id="" aria-describedby="helpId" placeholder="Post code">
-                            <small id="helpId" class="form-text text-muted span-info-text">Only digits(1-10)!</small>
+                            <input type="text" class="form-control" name="postCode" id="postCode"
+                                   th:value="*{postCode}"  aria-describedby="helpId" placeholder="Post code">
+                            <small  class="form-text text-muted span-info-text">Only digits(1-10)!</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('postCode')}" th:text="${error}"></small>
                         </div>
@@ -132,9 +132,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="street">Street:</label>
-                            <input type="text" class="form-control" name="street" id=""
+                            <input type="text" class="form-control" name="street" id="street"
                                    th:value="*{street}" aria-describedby="helpId" placeholder="Street">
-                            <small id="helpId" class="form-text text-muted span-info-text">Street can contains
+                            <small  class="form-text text-muted span-info-text">Street can contains
                             only letters (2-70)!</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('street')}" th:text="${error}"></small>
@@ -143,9 +143,9 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="streetNumber">Street Number:</label>
-                            <input type="text" class="form-control" name="streetNumb" id=""
+                            <input type="text" class="form-control" name="streetNumb" id="streetNumber"
                                     aria-describedby="helpId" placeholder="Str. number">
-                            <small id="helpId" class="form-text text-muted span-info-text">Only digits (1-3)!</small>
+                            <small  class="form-text text-muted span-info-text">Only digits (1-3)!</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('streetNumb')}" th:text="${error}"></small>
                         </div>
@@ -153,9 +153,9 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="phoneNumber">Phone number</label>
-                            <input type="text" class="form-control" name="phoneNumber" id=""
+                            <input type="text" class="form-control" name="phoneNumber" id="phoneNumber"
                                    th:value="*{phoneNumber}" aria-describedby="helpId" placeholder="Phone nuber">
-                            <small id="helpId" class="form-text text-muted span-info-text">Only digits (1-12)!</small>
+                            <small  class="form-text text-muted span-info-text">Only digits (1-12)!</small>
                             <small class="span-info-text-error" 
                             th:each="error : ${#fields.errors('phoneNumber')}" th:text="${error}"></small>
                         </div>
