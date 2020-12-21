@@ -11,8 +11,8 @@ import static shop.constants.ControllerPaths.GET_MAPPING_FAQ;
 public class FaqController {
 
     @PageTitle(name = "FAQ")
-    @GetMapping(GET_MAPPING_FAQ)
+    @GetMapping("faq")
     public String name() {
-        return FAQ_VIEW;
+        return "info/faq";
     }
 }

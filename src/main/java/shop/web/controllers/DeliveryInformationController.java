@@ -11,8 +11,8 @@ import static shop.constants.ControllerPaths.GET_MAPPING_DELIVERY_INFORMATION;
 public class DeliveryInformationController {
 
     @PageTitle(name = "Delivery Information")
-    @GetMapping(GET_MAPPING_DELIVERY_INFORMATION)
+    @GetMapping("/delivery-information")
     public String name() {
-        return DELIVERY_INFORMATION_VIEW;
+        return "infopr/delivery-information";
     }
 }

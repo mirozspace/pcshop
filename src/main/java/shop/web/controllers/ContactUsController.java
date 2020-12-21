@@ -11,8 +11,8 @@ import static shop.constants.ControllerPaths.GET_MAPPING_CONTACT;
 public class ContactUsController {
 
     @PageTitle(name = "Contact")
-    @GetMapping(GET_MAPPING_CONTACT)
+    @GetMapping("/contact")
     public String name() {
-        return CONTACT_VIEW;
+        return "info/contact";
     }
 }
