@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import shop.models.bindings.SaveNewRolesBindingModel;
 import shop.models.service.SaveNewRolesServiceModel;
 import shop.models.service.URoleServiceModel;
-import shop.models.service.UserServiceModel;
+import shop.models.service.AuthorityServiceModel;
 import shop.models.views.UserViewModel;
 import shop.service.ProductService;
 import shop.service.URoleService;
@@ -27,8 +27,6 @@ import shop.error.user.UserIsNotExistException;
 import shop.tools.ListShop;
 
 import java.util.List;
-
-import static shop.constants.ControllerPaths.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -64,7 +62,7 @@ public class AdminController {
 	@PreAuthorize("hasAnyAuthority('ADMIN')")
 	@GetMapping("/edit/roles/{userId}")
 	public String editUserRoles(@PathVariable("userId") String userId, Model model) {
-		UserServiceModel userForEdit = this.userService.findUserById(userId);
+		AuthorityServiceModel userForEdit = this.userService.findUserById(userId);
 		model.addAttribute("userForEdit", userForEdit);
 		return "admin/user-edit-roles";
 	}

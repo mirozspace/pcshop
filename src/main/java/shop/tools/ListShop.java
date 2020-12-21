@@ -63,10 +63,10 @@ public class ListShop {
                 .collect(Collectors.toList());
     }
 
-    public List<URoleViewModel> getAllUserRoles() {
+    public List<AuthorityViewModel> getAllUserRoles() {
         return this.userService.getAllUserRoles(this.tools.getLoggedUser())
                 .stream()
-                .map(ur -> this.modelMapper.map(ur, URoleViewModel.class))
+                .map(ur -> this.modelMapper.map(ur, AuthorityViewModel.class))
                 .collect(Collectors.toList());
     }
 

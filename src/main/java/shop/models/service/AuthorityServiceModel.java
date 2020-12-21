@@ -3,7 +3,7 @@ package shop.models.service;
 import java.util.List;
 import java.util.Set;
 
-public class UserServiceModel extends BaseServiceModel{
+public class AuthorityServiceModel extends BaseServiceModel{
 
     private String username;
     private String password;
@@ -23,7 +23,7 @@ public class UserServiceModel extends BaseServiceModel{
     private AddressServiceModel address;
     private Set<URoleServiceModel> authorities;
 
-    public UserServiceModel() {
+    public AuthorityServiceModel() {
     }
 
     public String getUsername() {

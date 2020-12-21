@@ -2,13 +2,13 @@ package shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import shop.models.entities.URole;
+import shop.models.entities.Authority;
 
 import java.util.Optional;
 
 @Repository
-public interface URoleRepository extends JpaRepository <URole, String> {
+public interface URoleRepository extends JpaRepository <Authority, String> {
 
-    Optional<URole> findByAuthority (String authority);
+    Optional<Authority> findByAuthority (String authority);
 
 }

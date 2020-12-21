@@ -8,17 +8,17 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "roles")
-public class URole extends BaseEntity implements GrantedAuthority {
+public class Authority extends BaseEntity implements GrantedAuthority {
 	
 	private String authority;
 
-    public URole() {
+    public Authority() {
     }
 
-    public URole(String authority) {
+    public Authority(String authority) {
         this.authority = authority;
     }
-    public URole(String id, String authority) {
+    public Authority(String id, String authority) {
         super(id);
         this.authority = authority;
     }

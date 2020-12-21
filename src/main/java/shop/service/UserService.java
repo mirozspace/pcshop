@@ -3,24 +3,24 @@ package shop.service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import shop.error.user.UserCannotSaveException;
 import shop.models.service.URoleServiceModel;
-import shop.models.service.UserServiceModel;
+import shop.models.service.AuthorityServiceModel;
 import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
 	boolean buyProduct(String productId, String loggedUserStr) throws UserCannotSaveException;
 
-    UserServiceModel register (UserServiceModel userServiceModel);
+    AuthorityServiceModel register (AuthorityServiceModel authorityServiceModel);
 
-    UserServiceModel updateProfile(UserServiceModel usm);
+    AuthorityServiceModel updateProfile(AuthorityServiceModel usm);
 
     List<URoleServiceModel> getAllUserRoles(String loggedUser);
 
-    List<UserServiceModel> getAllUsers();
+    List<AuthorityServiceModel> getAllUsers();
 
-    UserServiceModel findUserByUsername(String loggedUserStr);
+    AuthorityServiceModel findUserByUsername(String loggedUserStr);
 
-    UserServiceModel findUserById(String userId);
+    AuthorityServiceModel findUserById(String userId);
 
     boolean removeAllProductCart(String loggedUserStr);
 

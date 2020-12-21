@@ -1,13 +1,13 @@
 package shop.models.views;
 
-public class URoleViewModel {
+public class AuthorityViewModel {
 
     private String authority;
 
-    public URoleViewModel() {
+    public AuthorityViewModel() {
     }
 
-    public URoleViewModel(String authority) {
+    public AuthorityViewModel(String authority) {
         this.authority = authority;
     }
 

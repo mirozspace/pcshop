@@ -11,10 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import shop.error.user.UserRegistrationException;
 import shop.error.user.UserWithUsernameAlreadyExistException;
 import shop.models.entities.Address;
-import shop.models.entities.URole;
+import shop.models.entities.Authority;
 import shop.models.entities.User;
 import shop.models.service.AddressServiceModel;
-import shop.models.service.UserServiceModel;
+import shop.models.service.AuthorityServiceModel;
 import shop.repository.AddressRepository;
 import shop.repository.ProductRepository;
 import shop.repository.URoleRepository;
@@ -46,11 +46,11 @@ class UserServiceTest {
 
     private UserServiceImpl userServiceImpl;
 
-    private UserServiceModel usm;
+    private AuthorityServiceModel usm;
     private User user;
     private Address address;
-    private List<URole> rolesAdmin;
-    private List<URole> rolesUser;
+    private List<Authority> rolesAdmin;
+    private List<Authority> rolesUser;
 
     @Before
     public void init() {
@@ -91,36 +91,36 @@ class UserServiceTest {
         } catch (Exception e) {
             throw new UserRegistrationException("Cannot register user with username " + user.getUsername());
         }
-        UserServiceModel expected = this.modelMapper.map(savedUser, UserServiceModel.class);
+        AuthorityServiceModel expected = this.modelMapper.map(savedUser, AuthorityServiceModel.class);
     }
 
-    private void addAddressToUser(UserServiceModel userServiceModel, User user) {
+    private void addAddressToUser(AuthorityServiceModel authorityServiceModel, User user) {
         AddressServiceModel addressServiceModel = new AddressServiceModel();
-        addressServiceModel.setCity(userServiceModel.getCity());
-        addressServiceModel.setCountry(userServiceModel.getCountry());
-        addressServiceModel.setPostCode(userServiceModel.getPostCode());
-        addressServiceModel.setStreet(userServiceModel.getStreet());
-        addressServiceModel.setStreetNumb(userServiceModel.getStreetNumb());
+        addressServiceModel.setCity(authorityServiceModel.getCity());
+        addressServiceModel.setCountry(authorityServiceModel.getCountry());
+        addressServiceModel.setPostCode(authorityServiceModel.getPostCode());
+        addressServiceModel.setStreet(authorityServiceModel.getStreet());
+        addressServiceModel.setStreetNumb(authorityServiceModel.getStreetNumb());
         user.setAddress(this.modelMapper.map(addressServiceModel, Address.class));
     }
 
 
-    private UserServiceModel getUserServiceModel() {
-        UserServiceModel userServiceModel = new UserServiceModel();
-        userServiceModel.setId("shd87f687j32jkjdhf");
-        userServiceModel.setUsername("desito");
-        userServiceModel.setPassword("23445f456");
-        userServiceModel.setConfirmPassword("23445f456");
-        userServiceModel.setEmail("desito@desito.bg");
-        userServiceModel.setFirstName("Desislava");
-        userServiceModel.setLastName("Ivanova");
-        userServiceModel.setPhoneNumber("+359000000000");
-        userServiceModel.setCountry("Bulgaria");
-        userServiceModel.setCity("Sofia");
-        userServiceModel.setPostCode("1000");
-        userServiceModel.setStreet("Vitoshla");
-        userServiceModel.setStreetNumb("1A");
-        return userServiceModel;
+    private AuthorityServiceModel getUserServiceModel() {
+        AuthorityServiceModel authorityServiceModel = new AuthorityServiceModel();
+        authorityServiceModel.setId("shd87f687j32jkjdhf");
+        authorityServiceModel.setUsername("desito");
+        authorityServiceModel.setPassword("23445f456");
+        authorityServiceModel.setConfirmPassword("23445f456");
+        authorityServiceModel.setEmail("desito@desito.bg");
+        authorityServiceModel.setFirstName("Desislava");
+        authorityServiceModel.setLastName("Ivanova");
+        authorityServiceModel.setPhoneNumber("+359000000000");
+        authorityServiceModel.setCountry("Bulgaria");
+        authorityServiceModel.setCity("Sofia");
+        authorityServiceModel.setPostCode("1000");
+        authorityServiceModel.setStreet("Vitoshla");
+        authorityServiceModel.setStreetNumb("1A");
+        return authorityServiceModel;
     }
 
     private User getUserAdmin() {
@@ -133,7 +133,7 @@ class UserServiceTest {
         user.setLastName("Ivanova");
         user.setPhoneNumber("+359000000000");
         user.setBoughtProducts(new ArrayList<>());
-        user.setAuthorities(new HashSet<URole>(this.getRolesAdmin()));
+        user.setAuthorities(new HashSet<Authority>(this.getRolesAdmin()));
         user.setAddress(this.getAddress());
         return user;
     }
@@ -148,24 +148,24 @@ class UserServiceTest {
         user.setLastName("Ivanova");
         user.setPhoneNumber("+359000000000");
         user.setBoughtProducts(new ArrayList<>());
-        user.setAuthorities(new HashSet<URole>(this.getRolesUser()));
+        user.setAuthorities(new HashSet<Authority>(this.getRolesUser()));
         user.setAddress(this.getAddress());
         return user;
     }
 
-    private List<URole> getRolesAdmin() {
-        List<URole> roles = new ArrayList<>(Set.of(
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9993", "WORKER"),
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
+    private List<Authority> getRolesAdmin() {
+        List<Authority> roles = new ArrayList<>(Set.of(
+                new Authority("51ab53e5-c468-409e-8d64-ea76099a9991", "ADMIN"),
+                new Authority("51ab53e5-c468-409e-8d64-ea76099a9992", "MANAGER"),
+                new Authority("51ab53e5-c468-409e-8d64-ea76099a9993", "WORKER"),
+                new Authority("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
         ));
         return roles;
     }
 
-    private HashSet<URole> getRolesUser() {
-        HashSet<URole> roles = new HashSet<>(Set.of(
-                new URole("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
+    private HashSet<Authority> getRolesUser() {
+        HashSet<Authority> roles = new HashSet<>(Set.of(
+                new Authority("51ab53e5-c468-409e-8d64-ea76099a9994", "USER")
         ));
         return roles;
     }

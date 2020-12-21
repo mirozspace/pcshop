@@ -23,7 +23,7 @@ public class User extends BaseEntity implements UserDetails {
     private LocalDateTime createdDate = LocalDateTime.now();
     private List<Product> boughtProducts;
 
-    private Set<URole> authorities;
+    private Set<Authority> authorities;
 
     public User() {
     }
@@ -41,11 +41,11 @@ public class User extends BaseEntity implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    public Set<URole> getAuthorities() {
+    public Set<Authority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<URole> authorities) {
+    public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
 

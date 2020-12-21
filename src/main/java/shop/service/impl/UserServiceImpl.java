@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserServiceModel register(UserServiceModel usm) {
+	public AuthorityServiceModel register(AuthorityServiceModel usm) {
 		User user = this.modelMapper.map(usm, User.class);
 		User saved = this.userRepository.findByUsername(usm.getUsername()).orElse(null);
 		addAddressToUser(usm, user);
@@ -71,22 +71,22 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			throw new UserRegistrationException("Cannot register user with username " + user.getUsername());
 		}
-		return this.modelMapper.map(savedUser, UserServiceModel.class);
+		return this.modelMapper.map(savedUser, AuthorityServiceModel.class);
 	}
 
 	@Override
-	public List<UserServiceModel> getAllUsers() {
-		return this.userRepository.findAll().stream().map(e -> this.modelMapper.map(e, UserServiceModel.class))
+	public List<AuthorityServiceModel> getAllUsers() {
+		return this.userRepository.findAll().stream().map(e -> this.modelMapper.map(e, AuthorityServiceModel.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public UserServiceModel findUserByUsername(String loggedUserStr) {
+	public AuthorityServiceModel findUserByUsername(String loggedUserStr) {
 		User u = this.userRepository.findByUsername(loggedUserStr).orElse(null);
 		if (u == null) {
 			throw new UserIsNotExistException("User is not exist!");
 		}
-		return this.modelMapper.map(u, UserServiceModel.class);
+		return this.modelMapper.map(u, AuthorityServiceModel.class);
 	}
 
 	@Override
@@ -99,12 +99,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserServiceModel updateProfile(UserServiceModel usm) {
+	public AuthorityServiceModel updateProfile(AuthorityServiceModel usm) {
 
 		if (!usm.getPassword().equals(usm.getConfirmPassword())) {
 			throw new UserPasswordsNotMatchException("Password not match!");
 		}
-		UserServiceModel returnUser = null;
+		AuthorityServiceModel returnUser = null;
 		User u = this.userRepository.findByUsername(this.tools.getLoggedUser()).orElse(null);
 		if (u != null) {
 
@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
 				userAddress.setStreet(usm.getStreet());
 				userAddress.setStreetNumb(usm.getStreetNumb());
 				this.addressRepository.saveAndFlush(userAddress);
-				returnUser = this.modelMapper.map(userAddress, UserServiceModel.class);
+				returnUser = this.modelMapper.map(userAddress, AuthorityServiceModel.class);
 			} else {
 				throw new AddressIsNotExistException("Address is not Exist (internal error)!");
 			}
@@ -185,12 +185,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserServiceModel findUserById(String userId) {
+	public AuthorityServiceModel findUserById(String userId) {
 		User user = this.userRepository.findById(userId).orElse(null);
 		if (user == null) {
 			throw new UserWithThisIdNotFoundException(userId);
 		}
-		return this.modelMapper.map(user, UserServiceModel.class);
+		return this.modelMapper.map(user, AuthorityServiceModel.class);
 	}
 
 	@Override
@@ -204,13 +204,13 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
-	private void addAddressToUser(UserServiceModel userServiceModel, User user) {
+	private void addAddressToUser(AuthorityServiceModel authorityServiceModel, User user) {
 		AddressServiceModel addressServiceModel = new AddressServiceModel();
-		addressServiceModel.setCity(userServiceModel.getCity());
-		addressServiceModel.setCountry(userServiceModel.getCountry());
-		addressServiceModel.setPostCode(userServiceModel.getPostCode());
-		addressServiceModel.setStreet(userServiceModel.getStreet());
-		addressServiceModel.setStreetNumb(userServiceModel.getStreetNumb());
+		addressServiceModel.setCity(authorityServiceModel.getCity());
+		addressServiceModel.setCountry(authorityServiceModel.getCountry());
+		addressServiceModel.setPostCode(authorityServiceModel.getPostCode());
+		addressServiceModel.setStreet(authorityServiceModel.getStreet());
+		addressServiceModel.setStreetNumb(authorityServiceModel.getStreetNumb());
 		user.setAddress(this.modelMapper.map(addressServiceModel, Address.class));
 	}
 
