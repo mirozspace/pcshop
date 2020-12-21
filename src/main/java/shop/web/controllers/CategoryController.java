@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 import static shop.constants.ControllerPaths.*;
 
 @Controller
-@RequestMapping(REQUEST_MAPPING_CATEGORY)
+@RequestMapping("/category")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -44,51 +44,48 @@ public class CategoryController {
 
     @PageTitle(name = "Category")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
-    @GetMapping(GET_MAPPING_CATEGORY_UPDATE)
+    @GetMapping("/update")
     public String updateCategory(Model model) {
         List<CategoryViewModel> allCategories = this.categoryService.findAllCategories()
                 .stream().map(c -> this.modelMapper.map(c, CategoryViewModel.class))
                 .collect(Collectors.toList());
         model.addAttribute("allCategories", allCategories);
-        return CATEGORY_UPDATE_VIEW;
+        return "category/category-update";
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
-    @GetMapping(GET_MAPPING_CATEGORY_ADD)
+    @GetMapping("/add")
     public String addCategory(Model model) {
         if (!model.containsAttribute("cabm")) {
             model.addAttribute("cabm", new CategoryAddBindingModel());
         }
         List<CategoryViewModel> allCategories = this.listShop.getAllCategories();
         model.addAttribute("allCategories", allCategories);
-        return CATEGORY_ADD_VIEW;
+        return "category/category-add";
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
-    @PostMapping(POST_MAPPING_CATEGORY_ADD)
+    @PostMapping("/add")
     public String addCategoryPost(@Valid @ModelAttribute("cabm") CategoryAddBindingModel cabm,
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
-    	
-    	System.out.println();
-    	
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.cabm", bindingResult);
             redirectAttributes.addFlashAttribute("cabm", cabm);
-            return REDIRECT_TO_CATEGORY_ADD;
+            return "redirect:/category/add";
         }
         CategoryServiceModel csm = this.modelMapper.map(cabm, CategoryServiceModel.class);
         this.categoryService.addCategory(csm);
-        return REDIRECT_TO_CATEGORY_ADD;
+        return "redirect:/category/add";
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
-    @PostMapping(POST_MAPPING_CATEGORY_SAVE)
+    @PostMapping("/save")
     public String saveCategory(@ModelAttribute("csbm") CategorySaveBindingModel csbm) {
         this.categoryService.saveCategory(this.modelMapper.map(
                 csbm, CategoryServiceModel.class));
-        return REDIRECT_TO_CATEGORY_UPDATE;
+        return "redirect:/category/update";
     }
     
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER')")
@@ -114,10 +111,10 @@ public class CategoryController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @GetMapping(GET_MAPPING_CATEGORY_DELETE)
+    @GetMapping("/delete/{categoryId}")
     public String deleteCategory(@PathVariable("categoryId") String categoryId) {
         this.categoryService.deleteCategory(categoryId);
-        return REDIRECT_TO_CATEGORY_UPDATE;
+        return "redirect:/category/update";
     }
 
 	@ExceptionHandler({CategoryAlreadyExistException.class, CategoryAlreadyExistException.class,
@@ -128,14 +125,4 @@ public class CategoryController {
         modelAndView.setViewName("error");
         return modelAndView;
     }
-
-    
-
-    /*@GetMapping("/") //
-    public String updateOneCategory(@ModelAttribute ("cubm") CategoryUpdateBindingModel cubm){
-        this.categoryService.updateCategory(this.modelMapper.map(
-                cubm, CategoryServiceModel.class));
-        return PROFILE_UPDATE_VIEW;
-    }*/
-
 }
