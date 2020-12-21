@@ -31,7 +31,7 @@ import java.util.List;
 import static shop.constants.ControllerPaths.*;
 
 @Controller
-@RequestMapping(REQUEST_MAPPING_ADMIN)
+@RequestMapping("/admin")
 public class AdminController {
 
 	private final UserService userService;
@@ -52,12 +52,12 @@ public class AdminController {
 
 	@PageTitle(name = "Admin")
 	@PreAuthorize("hasAnyAuthority('ADMIN')")
-	@GetMapping(GET_MAPPING_ADMIN_USER_ALL)
+	@GetMapping("/user/all")
 	public String getAllUsers(Model model) {
 		List<UserViewModel> allUsers = this.listShop.getAllUser();
 		allUsers.sort( (e1, e2) -> e1.getUsername().compareTo(e2.getUsername()));
 		model.addAttribute("allUsers", allUsers);
-		return ADMIN_USER_ALL_VIEW;
+		return "admin/user-all";
 	}
 
 	@PageTitle(name = "Admin")
@@ -96,7 +96,6 @@ public class AdminController {
 		
 	}
 
-	@SuppressWarnings("unused")
 	@Deprecated
 	private boolean isHasThisRole(List<UserViewModel> allUsers, String role) {
 		for (UserViewModel u : allUsers) {

@@ -11,7 +11,7 @@ import static shop.constants.ControllerPaths.*;
 public class AboutController {
 
     @PageTitle(name = "About")
-    @GetMapping(GET_MAPPING_ABOUT)
+    @GetMapping("/about")
     public String name(){
         return ABOUT_VIEW;
     }
