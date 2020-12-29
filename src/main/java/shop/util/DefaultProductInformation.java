@@ -50,9 +50,7 @@ public enum DefaultProductInformation {
 	private String manufacturer;
 	private String imageUrl;
 
-	private DefaultProductInformation(String name, String description, String make, String model, String sku,
-			String ean, BigDecimal price, int quantity, ProductCondition productCondition, String category,
-			String manufacturer, String imageUrl) {
+	DefaultProductInformation(String name, String description, String make, String model, String sku, String ean, BigDecimal price, int quantity, ProductCondition productCondition, String category, String manufacturer, String imageUrl) {
 		
 		this.name = name;
 		this.description = description;

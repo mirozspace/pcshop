@@ -137,7 +137,7 @@ public class ProductServiceImpl implements ProductService {
             this.userRepository.saveAndFlush(user);
         }
         Product product = this.productRepository.findById(productId).orElse(null);
-        product.setImageUrls(new ArrayList<String>());
+        product.setImageUrls(new ArrayList<>());
         product.setCategory(null);
         this.productRepository.saveAndFlush(product);
         this.productRepository.deleteById(productId);

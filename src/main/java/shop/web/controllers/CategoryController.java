@@ -25,8 +25,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static shop.constants.ControllerPaths.*;
-
 @Controller
 @RequestMapping("/category")
 public class CategoryController {

@@ -42,7 +42,7 @@ public class Product extends BaseEntity {
     	this.productCondition = productCondition;
     	this.category = category;
     	this.manufacturer = manufacturer;
-    	this.imageUrls = new ArrayList<String>();
+    	this.imageUrls = new ArrayList<>();
     	imageUrls.add(imageUrl);
     	
 	}

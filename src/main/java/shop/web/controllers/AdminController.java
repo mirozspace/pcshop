@@ -26,6 +26,7 @@ import shop.error.CustomBaseException;
 import shop.error.user.UserIsNotExistException;
 import shop.tools.ListShop;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -53,7 +54,7 @@ public class AdminController {
 	@GetMapping("/user/all")
 	public String getAllUsers(Model model) {
 		List<UserViewModel> allUsers = this.listShop.getAllUser();
-		allUsers.sort( (e1, e2) -> e1.getUsername().compareTo(e2.getUsername()));
+		allUsers.sort(Comparator.comparing(UserViewModel::getUsername));
 		model.addAttribute("allUsers", allUsers);
 		return "admin/user-all";
 	}
