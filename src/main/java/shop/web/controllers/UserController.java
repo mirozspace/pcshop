@@ -15,7 +15,7 @@ import shop.error.address.AddressIsNotExistException;
 import shop.error.user.*;
 import shop.models.bindings.UserProfileUpdateBindingModel;
 import shop.models.bindings.UserRegisterBindingModel;
-import shop.models.service.AuthorityServiceModel;
+import shop.models.service.UserServiceModel;
 import shop.models.views.*;
 import shop.service.OrderService;
 import shop.service.UserService;
@@ -83,7 +83,7 @@ public class UserController {
             redirectAttributes.addFlashAttribute("urbm", urbm);
         }
 
-        this.userService.register(this.modelMapper.map(urbm, AuthorityServiceModel.class));
+        this.userService.register(this.modelMapper.map(urbm, UserServiceModel.class));
         return REDIRECT_TO_LOGIN;
     }
 
@@ -133,7 +133,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @GetMapping(GET_MAPPING_USER_PROFILE_UPDATE)
     public String userUpdateProfile(Model model) {
-        AuthorityServiceModel usm = this.userService.findUserByUsername(this.tools.getLoggedUser());
+        UserServiceModel usm = this.userService.findUserByUsername(this.tools.getLoggedUser());
         UserProfileUpdateViewModel uvm = this.modelMapper.map(usm, UserProfileUpdateViewModel.class);
         model.addAttribute("uvm", uvm);
         return PROFILE_UPDATE_VIEW;
@@ -142,7 +142,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER', 'WORKER', 'USER')")
     @PostMapping(POST_MAPPING_USER_PROFILE_UPDATE)
     public String userUpdateProfileConfirm(@ModelAttribute("upu") UserProfileUpdateBindingModel upu) {
-        this.userService.updateProfile(this.modelMapper.map(upu, AuthorityServiceModel.class));
+        this.userService.updateProfile(this.modelMapper.map(upu, UserServiceModel.class));
         return REDIRECT_TO_USER_PROFILE_UPDATE;
     }
 

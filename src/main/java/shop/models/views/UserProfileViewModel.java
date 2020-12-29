@@ -1,14 +1,12 @@
 package shop.models.views;
 
-import shop.models.service.AddressServiceModel;
-
 public class UserProfileViewModel extends BaseViewModel{
 
 	private String username;
     private String firstName;
     private String lastName;
     private String email;
-    private AddressServiceModel address;
+    private AddressViewModel address;
 	private String phoneNumber;
 
 	public UserProfileViewModel() {
@@ -47,11 +45,11 @@ public class UserProfileViewModel extends BaseViewModel{
 		this.lastName = lastName;
 	}
 
-	public AddressServiceModel getAddress() {
+	public AddressViewModel getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressServiceModel address) {
+	public void setAddress(AddressViewModel address) {
 		this.address = address;
 	}
 

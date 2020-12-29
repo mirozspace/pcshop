@@ -15,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import shop.models.bindings.SaveNewRolesBindingModel;
 import shop.models.service.SaveNewRolesServiceModel;
-import shop.models.service.URoleServiceModel;
 import shop.models.service.AuthorityServiceModel;
+import shop.models.service.UserServiceModel;
 import shop.models.views.UserViewModel;
 import shop.service.ProductService;
 import shop.service.URoleService;
@@ -62,7 +62,7 @@ public class AdminController {
 	@PreAuthorize("hasAnyAuthority('ADMIN')")
 	@GetMapping("/edit/roles/{userId}")
 	public String editUserRoles(@PathVariable("userId") String userId, Model model) {
-		AuthorityServiceModel userForEdit = this.userService.findUserById(userId);
+		UserServiceModel userForEdit = this.userService.findUserById(userId);
 		model.addAttribute("userForEdit", userForEdit);
 		return "admin/user-edit-roles";
 	}
@@ -97,7 +97,7 @@ public class AdminController {
 	@Deprecated
 	private boolean isHasThisRole(List<UserViewModel> allUsers, String role) {
 		for (UserViewModel u : allUsers) {
-			for (URoleServiceModel r : u.getAuthorities()) {
+			for (AuthorityServiceModel r : u.getAuthorities()) {
 				if (r.getAuthority().equals(role)) {
 					return true;
 				}

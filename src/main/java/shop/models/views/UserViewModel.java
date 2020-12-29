@@ -1,7 +1,6 @@
 package shop.models.views;
 
-import shop.models.service.AddressServiceModel;
-import shop.models.service.URoleServiceModel;
+import shop.models.service.AuthorityServiceModel;
 
 import java.util.List;
 import java.util.Set;
@@ -12,10 +11,10 @@ public class UserViewModel extends BaseViewModel{
     private String firstName;
     private String lastName;
     private String email;
-    private AddressServiceModel address;
+    private AddressViewModel address;
 	private String phoneNumber;
 	private List<ProductViewModel> buyedProducts;
-	private Set<URoleServiceModel> authorities;
+	private Set<AuthorityServiceModel> authorities;
 	
 	public UserViewModel() {
 		super();
@@ -53,11 +52,11 @@ public class UserViewModel extends BaseViewModel{
 		this.lastName = lastName;
 	}
 
-	public AddressServiceModel getAddress() {
+	public AddressViewModel getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressServiceModel address) {
+	public void setAddress(AddressViewModel address) {
 		this.address = address;
 	}
 
@@ -77,11 +76,11 @@ public class UserViewModel extends BaseViewModel{
 		this.email = email;
 	}
 
-	public Set<URoleServiceModel> getAuthorities() {
+	public Set<AuthorityServiceModel> getAuthorities() {
 		return authorities;
 	}
 
-	public void setAuthorities(Set<URoleServiceModel> authorities) {
+	public void setAuthorities(Set<AuthorityServiceModel> authorities) {
 		this.authorities = authorities;
 	}
 

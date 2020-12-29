@@ -28,17 +28,17 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(ENABLE_ADDRESSES).permitAll()
                 .antMatchers(ENABLE_RESOURCES).permitAll()
                 .anyRequest().authenticated()
-                .and()
+                    .and()
                 .formLogin().loginPage("/user/login").permitAll()
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/home")
-                .and()
+                    .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/user/login").permitAll()
-                .and()
+                    .and()
                 .exceptionHandling().accessDeniedPage("/unauthorized");
 
         http.headers().disable();

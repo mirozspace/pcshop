@@ -13,6 +13,7 @@ import shop.models.entities.Address;
 import shop.models.entities.Product;
 import shop.models.entities.User;
 import shop.models.service.*;
+import shop.models.views.AddressViewModel;
 import shop.repository.AddressRepository;
 import shop.repository.ProductRepository;
 import shop.repository.URoleRepository;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public AuthorityServiceModel register(AuthorityServiceModel usm) {
+	public UserServiceModel register(UserServiceModel usm) {
 		User user = this.modelMapper.map(usm, User.class);
 		User saved = this.userRepository.findByUsername(usm.getUsername()).orElse(null);
 		addAddressToUser(usm, user);
@@ -71,22 +72,22 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			throw new UserRegistrationException("Cannot register user with username " + user.getUsername());
 		}
-		return this.modelMapper.map(savedUser, AuthorityServiceModel.class);
+		return this.modelMapper.map(savedUser, UserServiceModel.class);
 	}
 
 	@Override
-	public List<AuthorityServiceModel> getAllUsers() {
-		return this.userRepository.findAll().stream().map(e -> this.modelMapper.map(e, AuthorityServiceModel.class))
+	public List<UserServiceModel> getAllUsers() {
+		return this.userRepository.findAll().stream().map(e -> this.modelMapper.map(e, UserServiceModel.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public AuthorityServiceModel findUserByUsername(String loggedUserStr) {
+	public UserServiceModel findUserByUsername(String loggedUserStr) {
 		User u = this.userRepository.findByUsername(loggedUserStr).orElse(null);
 		if (u == null) {
 			throw new UserIsNotExistException("User is not exist!");
 		}
-		return this.modelMapper.map(u, AuthorityServiceModel.class);
+		return this.modelMapper.map(u, UserServiceModel.class);
 	}
 
 	@Override
@@ -99,12 +100,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public AuthorityServiceModel updateProfile(AuthorityServiceModel usm) {
+	public UserServiceModel updateProfile(UserServiceModel usm) {
 
 		if (!usm.getPassword().equals(usm.getConfirmPassword())) {
 			throw new UserPasswordsNotMatchException("Password not match!");
 		}
-		AuthorityServiceModel returnUser = null;
+		UserServiceModel returnUser = null;
 		User u = this.userRepository.findByUsername(this.tools.getLoggedUser()).orElse(null);
 		if (u != null) {
 
@@ -124,7 +125,7 @@ public class UserServiceImpl implements UserService {
 				userAddress.setStreet(usm.getStreet());
 				userAddress.setStreetNumb(usm.getStreetNumb());
 				this.addressRepository.saveAndFlush(userAddress);
-				returnUser = this.modelMapper.map(userAddress, AuthorityServiceModel.class);
+				returnUser = this.modelMapper.map(userAddress, UserServiceModel.class);
 			} else {
 				throw new AddressIsNotExistException("Address is not Exist (internal error)!");
 			}
@@ -135,11 +136,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<URoleServiceModel> getAllUserRoles(String loggedUser) {
+	public List<AuthorityServiceModel> getAllUserRoles(String loggedUser) {
 		User user = this.userRepository.findByUsername(loggedUser).orElse(null);
 		if (user == null)
 			throw new UserIsNotExistException(loggedUser);
-		return user.getAuthorities().stream().map(r -> this.modelMapper.map(r, URoleServiceModel.class))
+		return user.getAuthorities().stream().map(r -> this.modelMapper.map(r, AuthorityServiceModel.class))
 				.collect(Collectors.toList());
 	}
 
@@ -185,12 +186,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public AuthorityServiceModel findUserById(String userId) {
+	public UserServiceModel findUserById(String userId) {
 		User user = this.userRepository.findById(userId).orElse(null);
 		if (user == null) {
 			throw new UserWithThisIdNotFoundException(userId);
 		}
-		return this.modelMapper.map(user, AuthorityServiceModel.class);
+		return this.modelMapper.map(user, UserServiceModel.class);
 	}
 
 	@Override
@@ -204,14 +205,14 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
-	private void addAddressToUser(AuthorityServiceModel authorityServiceModel, User user) {
-		AddressServiceModel addressServiceModel = new AddressServiceModel();
-		addressServiceModel.setCity(authorityServiceModel.getCity());
-		addressServiceModel.setCountry(authorityServiceModel.getCountry());
-		addressServiceModel.setPostCode(authorityServiceModel.getPostCode());
-		addressServiceModel.setStreet(authorityServiceModel.getStreet());
-		addressServiceModel.setStreetNumb(authorityServiceModel.getStreetNumb());
-		user.setAddress(this.modelMapper.map(addressServiceModel, Address.class));
+	private void addAddressToUser(UserServiceModel userServiceModel, User user) {
+		AddressViewModel addressViewModel = new AddressViewModel();
+		addressViewModel.setCity(userServiceModel.getCity());
+		addressViewModel.setCountry(userServiceModel.getCountry());
+		addressViewModel.setPostCode(userServiceModel.getPostCode());
+		addressViewModel.setStreet(userServiceModel.getStreet());
+		addressViewModel.setStreetNumb(userServiceModel.getStreetNumb());
+		user.setAddress(this.modelMapper.map(addressViewModel, Address.class));
 	}
 
 	private boolean isInputDataCorrect(User loggedUser, Product productForBuy) {

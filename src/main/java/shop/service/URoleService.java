@@ -1,7 +1,7 @@
 package shop.service;
 
 import shop.models.service.SaveNewRolesServiceModel;
-import shop.models.service.URoleServiceModel;
+import shop.models.service.AuthorityServiceModel;
 
 
 public interface URoleService {
@@ -10,6 +10,6 @@ public interface URoleService {
 
     boolean editUserRoles(SaveNewRolesServiceModel snrsm);
 
-    URoleServiceModel findByAuthority (String authority);
+    AuthorityServiceModel findByAuthority (String authority);
 
 }

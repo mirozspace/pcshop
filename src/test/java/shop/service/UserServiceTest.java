@@ -13,8 +13,8 @@ import shop.error.user.UserWithUsernameAlreadyExistException;
 import shop.models.entities.Address;
 import shop.models.entities.Authority;
 import shop.models.entities.User;
-import shop.models.service.AddressServiceModel;
-import shop.models.service.AuthorityServiceModel;
+import shop.models.views.AddressViewModel;
+import shop.models.service.UserServiceModel;
 import shop.repository.AddressRepository;
 import shop.repository.ProductRepository;
 import shop.repository.URoleRepository;
@@ -46,7 +46,7 @@ class UserServiceTest {
 
     private UserServiceImpl userServiceImpl;
 
-    private AuthorityServiceModel usm;
+    private UserServiceModel usm;
     private User user;
     private Address address;
     private List<Authority> rolesAdmin;
@@ -91,36 +91,36 @@ class UserServiceTest {
         } catch (Exception e) {
             throw new UserRegistrationException("Cannot register user with username " + user.getUsername());
         }
-        AuthorityServiceModel expected = this.modelMapper.map(savedUser, AuthorityServiceModel.class);
+        UserServiceModel expected = this.modelMapper.map(savedUser, UserServiceModel.class);
     }
 
-    private void addAddressToUser(AuthorityServiceModel authorityServiceModel, User user) {
-        AddressServiceModel addressServiceModel = new AddressServiceModel();
-        addressServiceModel.setCity(authorityServiceModel.getCity());
-        addressServiceModel.setCountry(authorityServiceModel.getCountry());
-        addressServiceModel.setPostCode(authorityServiceModel.getPostCode());
-        addressServiceModel.setStreet(authorityServiceModel.getStreet());
-        addressServiceModel.setStreetNumb(authorityServiceModel.getStreetNumb());
-        user.setAddress(this.modelMapper.map(addressServiceModel, Address.class));
+    private void addAddressToUser(UserServiceModel userServiceModel, User user) {
+        AddressViewModel addressViewModel = new AddressViewModel();
+        addressViewModel.setCity(userServiceModel.getCity());
+        addressViewModel.setCountry(userServiceModel.getCountry());
+        addressViewModel.setPostCode(userServiceModel.getPostCode());
+        addressViewModel.setStreet(userServiceModel.getStreet());
+        addressViewModel.setStreetNumb(userServiceModel.getStreetNumb());
+        user.setAddress(this.modelMapper.map(addressViewModel, Address.class));
     }
 
 
-    private AuthorityServiceModel getUserServiceModel() {
-        AuthorityServiceModel authorityServiceModel = new AuthorityServiceModel();
-        authorityServiceModel.setId("shd87f687j32jkjdhf");
-        authorityServiceModel.setUsername("desito");
-        authorityServiceModel.setPassword("23445f456");
-        authorityServiceModel.setConfirmPassword("23445f456");
-        authorityServiceModel.setEmail("desito@desito.bg");
-        authorityServiceModel.setFirstName("Desislava");
-        authorityServiceModel.setLastName("Ivanova");
-        authorityServiceModel.setPhoneNumber("+359000000000");
-        authorityServiceModel.setCountry("Bulgaria");
-        authorityServiceModel.setCity("Sofia");
-        authorityServiceModel.setPostCode("1000");
-        authorityServiceModel.setStreet("Vitoshla");
-        authorityServiceModel.setStreetNumb("1A");
-        return authorityServiceModel;
+    private UserServiceModel getUserServiceModel() {
+        UserServiceModel userServiceModel = new UserServiceModel();
+        userServiceModel.setId("shd87f687j32jkjdhf");
+        userServiceModel.setUsername("desito");
+        userServiceModel.setPassword("23445f456");
+        userServiceModel.setConfirmPassword("23445f456");
+        userServiceModel.setEmail("desito@desito.bg");
+        userServiceModel.setFirstName("Desislava");
+        userServiceModel.setLastName("Ivanova");
+        userServiceModel.setPhoneNumber("+359000000000");
+        userServiceModel.setCountry("Bulgaria");
+        userServiceModel.setCity("Sofia");
+        userServiceModel.setPostCode("1000");
+        userServiceModel.setStreet("Vitoshla");
+        userServiceModel.setStreetNumb("1A");
+        return userServiceModel;
     }
 
     private User getUserAdmin() {

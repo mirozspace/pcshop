@@ -1,6 +1,8 @@
-package shop.models.service;
+package shop.models.views;
 
-public class AddressServiceModel extends BaseServiceModel{
+import shop.models.service.BaseServiceModel;
+
+public class AddressViewModel extends BaseServiceModel {
 
     private String postCode;
     private String city;
@@ -8,7 +10,7 @@ public class AddressServiceModel extends BaseServiceModel{
     private String street;
     private String streetNumb;
 
-    public AddressServiceModel() {
+    public AddressViewModel() {
     }
 
     public String getPostCode() {

@@ -8,7 +8,7 @@ import shop.error.user.UserIsNotExistException;
 import shop.models.entities.Authority;
 import shop.models.entities.User;
 import shop.models.service.SaveNewRolesServiceModel;
-import shop.models.service.URoleServiceModel;
+import shop.models.service.AuthorityServiceModel;
 import shop.repository.URoleRepository;
 import shop.repository.UserRepository;
 import shop.service.URoleService;
@@ -71,7 +71,7 @@ public class AuthorityServiceImpl implements URoleService {
 	}
 
     @Override
-    public URoleServiceModel findByAuthority(String authority) {
+    public AuthorityServiceModel findByAuthority(String authority) {
 		if(authority == null){
 			throw new URoleIsNotExistException("URole is not exist!");
 		}
@@ -79,7 +79,7 @@ public class AuthorityServiceImpl implements URoleService {
 		if (uRole == null){
 			throw new URoleIsNotExistException("User role is not exist!");
 		}
-		return this.modelMapper.map(uRole, URoleServiceModel.class);
+		return this.modelMapper.map(uRole, AuthorityServiceModel.class);
     }
 
 }
