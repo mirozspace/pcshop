@@ -27,5 +27,4 @@ public class CoudinaryServiceImpl implements CloudinaryService {
         multipartFile.transferTo(file);
         return this.cloudinary.uploader().upload(file, new HashMap()).get("url").toString();
     }
-
 }
