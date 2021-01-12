@@ -18,7 +18,7 @@ public class Tools {
     	} else {
     		username = principal.toString();
     	}
-    	return new String(username);
+    	return username;
     }
     
     @PostConstruct

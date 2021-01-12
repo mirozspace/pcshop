@@ -219,4 +219,22 @@ public class UserServiceImpl implements UserService {
 		return loggedUser != null && productForBuy != null;
 	}
 
+	/*static void myExceptionsThrower(String key) throws Exception {
+		if("illegalstate".equals(key)) {
+			throw new IllegalStateException("that's my IllegalStateException bro!");
+		}
+		else if("illegalaccess".equals(key)) {
+			throw new IllegalAccessException("that's my IllegalAccessException bro!");
+		}
+		// etc...
+	}*/
+
+	/*public <T> T checkSomethingIsNull(T object, String m, Class tClass) {
+		if (object == null){
+			throw new tClass.getDeclaringClass()
+		}
+		return object;
+	}*/
+
+
 }

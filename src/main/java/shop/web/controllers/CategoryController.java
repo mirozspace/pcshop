@@ -9,16 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import shop.annotation.PageTitle;
+import shop.error.CustomBaseException;
 import shop.error.category.CategoryAlreadyExistException;
 import shop.error.category.CategoryIsNotExistExceprion;
-import shop.error.CustomBaseException;
 import shop.models.bindings.CategoryAddBindingModel;
 import shop.models.bindings.CategorySaveBindingModel;
 import shop.models.service.CategoryServiceModel;
 import shop.models.views.CategoryViewModel;
 import shop.models.views.ProductViewModel;
 import shop.service.CategoryService;
-import shop.annotation.PageTitle;
 import shop.tools.ListShop;
 
 import javax.validation.Valid;

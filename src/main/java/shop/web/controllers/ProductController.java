@@ -9,7 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import shop.error.*;
+import shop.annotation.PageTitle;
+import shop.error.CustomBaseException;
 import shop.error.product.ProductIsNotExistException;
 import shop.models.bindings.ProductBindingModel;
 import shop.models.bindings.ProductUpdateBindingModel;
@@ -18,7 +19,6 @@ import shop.models.views.CategoryViewModel;
 import shop.models.views.ManufacturerViewModel;
 import shop.models.views.ProductViewModel;
 import shop.service.ProductService;
-import shop.annotation.PageTitle;
 import shop.tools.ListShop;
 
 import javax.validation.Valid;

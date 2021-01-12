@@ -9,16 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import shop.annotation.PageTitle;
 import shop.error.CustomBaseException;
 import shop.error.manufacturer.ManufacturerIsNotExistException;
 import shop.error.manufacturer.ManufacturerUpdateException;
 import shop.models.bindings.ManufacturerAddBindingModel;
-import shop.models.bindings.ManufacturerUpdateBindingModel;
 import shop.models.bindings.ManufacturerSaveBindingModel;
+import shop.models.bindings.ManufacturerUpdateBindingModel;
 import shop.models.service.ManufacturerServiceModel;
 import shop.models.views.ManufacturerViewModel;
 import shop.service.ManufacturerService;
-import shop.annotation.PageTitle;
 import shop.tools.ListShop;
 
 import javax.validation.Valid;

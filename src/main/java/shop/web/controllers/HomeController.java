@@ -5,11 +5,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import shop.models.views.CategoryViewModel;
 import shop.models.views.ProductViewModel;
 import shop.tools.ListShop;
+
 import java.util.List;
+
 import static shop.constants.ControllerPaths.*;
 
 @Controller
